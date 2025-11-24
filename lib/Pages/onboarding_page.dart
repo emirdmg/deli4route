@@ -1,0 +1,132 @@
+import 'package:deli4route/Pages/Welcome/auth_landing_page.dart';
+import 'package:flutter/material.dart';
+import 'package:introduction_screen/introduction_screen.dart';
+
+class OnboardingPage extends StatelessWidget {
+  const OnboardingPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: IntroductionScreen(
+        pages: [
+          PageViewModel(
+            titleWidget: Text(
+              "Ürün Listeni Hazırla",
+              style: TextStyle(
+                fontSize: 28,
+                fontWeight: FontWeight.bold,
+                color: Colors.black87,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            bodyWidget: Text(
+              "Ürünlerinin listesini yazıya dök.",
+              style: TextStyle(
+                fontSize: 16,
+                color: Colors.black54,
+                height: 1.5,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            image: Padding(
+              padding: const EdgeInsets.only(top: 20),
+              child: Image.asset(
+                'assets/icons/list_items.png',
+                width: 96,
+                height: 96,
+              ),
+            ),
+          ),
+          PageViewModel(
+            titleWidget: Text(
+              "Listeyi Yükle",
+              style: TextStyle(
+                fontSize: 28,
+                fontWeight: FontWeight.bold,
+                color: Colors.black87,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            bodyWidget: Text(
+              "Listenin rotaya dönüştürülmesini bekle.",
+              style: TextStyle(
+                fontSize: 16,
+                color: Colors.black54,
+                height: 1.5,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            image: Padding(
+              padding: const EdgeInsets.only(top: 20),
+              child: Image.asset(
+                'assets/icons/location.png',
+                width: 96,
+                height: 96,
+              ),
+            ),
+          ),
+          PageViewModel(
+            titleWidget: Text(
+              "Yola Çık",
+              style: TextStyle(
+                fontSize: 28,
+                fontWeight: FontWeight.bold,
+                color: Colors.black87,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            bodyWidget: Text(
+              "Belirlenen rotayı kullan, zaman kazan.",
+              style: TextStyle(
+                fontSize: 16,
+                color: Colors.black54,
+                height: 1.5,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            image: Padding(
+              padding: const EdgeInsets.only(top: 20),
+              child: Image.asset(
+                'assets/icons/done.png',
+                width: 96,
+                height: 96,
+              ),
+            ),
+          ),
+        ],
+        dotsDecorator: DotsDecorator(
+          color: Colors.orange,
+          activeColor: Color(0xFF222222),
+        ),
+        done: Text('Start', style: TextStyle(color: Color(0xFFFF6D1F))),
+        showSkipButton: true,
+        skip: const Text(
+          "Geç",
+          style: TextStyle(
+            fontWeight: FontWeight.w500,
+            fontSize: 15,
+            color: Colors.black87,
+          ),
+        ),
+        next: const Icon(
+          Icons.arrow_forward_rounded,
+          size: 28,
+          color: Color(0xFFFF6D1F),
+        ),
+        onDone: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (builder) => AuthLandingPage()),
+          );
+        },
+        onSkip: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (builder) => AuthLandingPage()),
+          );
+        },
+      ),
+    );
+  }
+}
