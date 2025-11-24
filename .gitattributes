@@ -1,0 +1,11 @@
+*.kt linguist-language=Dart
+*.swift linguist-language=Dart
+*.cmake linguist-detectable=false
+*.cpp linguist-detectable=false
+*.h linguist-detectable=false
+*.c linguist-detectable=false
+ios/* linguist-detectable=false
+android/* linguist-detectable=false
+windows/* linguist-detectable=false
+linux/* linguist-detectable=false
+macos/* linguist-detectable=false
