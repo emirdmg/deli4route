@@ -1,3 +1,4 @@
+import 'package:deli4route/Colors/app_colors.dart';
 import 'package:deli4route/Pages/Welcome/auth_landing_page.dart';
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
@@ -97,9 +98,9 @@ class OnboardingPage extends StatelessWidget {
         ],
         dotsDecorator: DotsDecorator(
           color: Colors.orange,
-          activeColor: Color(0xFF222222),
+          activeColor: AppColors.inactiveButtonColor,
         ),
-        done: Text('Start', style: TextStyle(color: Color(0xFFFF6D1F))),
+        done: Text('Start', style: TextStyle(color: AppColors.activeDefaultButton)),
         showSkipButton: true,
         skip: const Text(
           "Geç",
@@ -112,7 +113,7 @@ class OnboardingPage extends StatelessWidget {
         next: const Icon(
           Icons.arrow_forward_rounded,
           size: 28,
-          color: Color(0xFFFF6D1F),
+          color: AppColors.activeDefaultButton
         ),
         onDone: () {
           Navigator.push(

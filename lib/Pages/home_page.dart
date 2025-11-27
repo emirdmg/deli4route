@@ -1,3 +1,4 @@
+import 'package:deli4route/Colors/app_colors.dart';
 import 'package:deli4route/Pages/NavPages/addresses_page.dart';
 import 'package:deli4route/Pages/NavPages/history_page.dart';
 import 'package:deli4route/Pages/NavPages/profile_page.dart';
@@ -33,26 +34,26 @@ class _HomePageState extends State<HomePage> {
         }),
         items: [
           FlashyTabBarItem(
-            activeColor: Color(0xFFFF6D1F),
-            inactiveColor: Color(0xFF222222),
+            activeColor: AppColors.activeDefaultButton,
+            inactiveColor: AppColors.inactiveButtonColor,
             icon: Icon(Icons.location_pin),
             title: Text('Route')
             ),
           FlashyTabBarItem(
-            activeColor: Color(0xFFFF6D1F),
-            inactiveColor: Color(0xFF222222),
+            activeColor: AppColors.activeDefaultButton,
+            inactiveColor: AppColors.inactiveButtonColor,
             icon: Icon(Icons.map),
             title: Text('Addresses')
             ),
           FlashyTabBarItem(
-            activeColor: Color(0xFFFF6D1F),
-            inactiveColor: Color(0xFF222222),
+            activeColor: AppColors.activeDefaultButton,
+            inactiveColor: AppColors.inactiveButtonColor,
             icon: Icon(Icons.history),
             title: Text('History'),
           ),
           FlashyTabBarItem(
-            activeColor: Color(0xFFFF6D1F),
-            inactiveColor: Color(0xFF222222),
+            activeColor: AppColors.activeDefaultButton,
+            inactiveColor: AppColors.inactiveButtonColor,
             icon: Icon(Icons.person),
             title: Text('Profile')
             ),

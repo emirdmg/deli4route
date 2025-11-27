@@ -1,3 +1,4 @@
+import 'package:deli4route/Colors/app_colors.dart';
 import 'package:deli4route/Pages/onboarding_page.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
@@ -60,7 +61,7 @@ class _WelcomePageState extends State<WelcomePage> {
                 height: 52,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color(0xFFFF6D1F),
+                    backgroundColor: AppColors.activeDefaultButton,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(14),
                     ),

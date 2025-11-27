@@ -1,3 +1,4 @@
+import 'package:deli4route/Colors/app_colors.dart';
 import 'package:deli4route/Pages/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -39,7 +40,7 @@ class AuthLandingPage extends StatelessWidget {
                 height: 52,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color(0xFFFF6D1F),
+                    backgroundColor: AppColors.activeDefaultButton,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(14),
                     ),
@@ -66,7 +67,7 @@ class AuthLandingPage extends StatelessWidget {
                 child: OutlinedButton(
                   style: OutlinedButton.styleFrom(
                     side: const BorderSide(
-                      color: Color(0xFFFF6D1F),
+                      color: AppColors.activeDefaultButton,
                       width: 1.4,
                     ),
                     shape: RoundedRectangleBorder(
@@ -78,7 +79,7 @@ class AuthLandingPage extends StatelessWidget {
                     "Sign Up",
                     style: TextStyle(
                       fontSize: 17,
-                      color: Color(0xFFFF6D1F),
+                      color: AppColors.activeDefaultButton,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
