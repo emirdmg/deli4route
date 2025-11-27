@@ -1,5 +1,4 @@
 import 'package:deli4route/Colors/app_colors.dart';
-import 'package:deli4route/Pages/NavPages/addresses_page.dart';
 import 'package:deli4route/Pages/NavPages/history_page.dart';
 import 'package:deli4route/Pages/NavPages/home_page.dart';
 import 'package:deli4route/Pages/NavPages/profile_page.dart';
@@ -18,7 +17,6 @@ class _MainPageState extends State<MainPage> {
   int _selectedIndex = 0;
   final List<Widget> _screens = [
     HomePage(),
-    AddressesPage(),
     RoutePage(),
     HistoryPage(),
     ProfilePage(),
@@ -41,12 +39,7 @@ class _MainPageState extends State<MainPage> {
             icon: Icon(Icons.home, size: 28),
             title: Text('Home'),
           ),
-          FlashyTabBarItem(
-            activeColor: AppColors.activeDefaultButton,
-            inactiveColor: AppColors.inactiveButtonColor,
-            icon: Icon(Icons.location_pin, size: 28),
-            title: Text('Addresses'),
-          ),
+          
           FlashyTabBarItem(
             activeColor: AppColors.activeDefaultButton,
             inactiveColor: AppColors.inactiveButtonColor,
