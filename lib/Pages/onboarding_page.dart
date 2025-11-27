@@ -1,6 +1,7 @@
 import 'package:deli4route/Colors/app_colors.dart';
 import 'package:deli4route/Pages/Welcome/auth_landing_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 
 class OnboardingPage extends StatelessWidget {
@@ -88,8 +89,8 @@ class OnboardingPage extends StatelessWidget {
             ),
             image: Padding(
               padding: const EdgeInsets.only(top: 20),
-              child: Image.asset(
-                'assets/icons/done.png',
+              child: SvgPicture.asset(
+                'assets/lets_go.svg',
                 width: 96,
                 height: 96,
               ),

@@ -1,25 +1,27 @@
 import 'package:deli4route/Colors/app_colors.dart';
 import 'package:deli4route/Pages/NavPages/addresses_page.dart';
 import 'package:deli4route/Pages/NavPages/history_page.dart';
+import 'package:deli4route/Pages/NavPages/home_page.dart';
 import 'package:deli4route/Pages/NavPages/profile_page.dart';
 import 'package:deli4route/Pages/NavPages/route_page.dart';
 import 'package:flashy_tab_bar2/flashy_tab_bar2.dart';
 import 'package:flutter/material.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class MainPage extends StatefulWidget {
+  const MainPage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<MainPage> createState() => _MainPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _MainPageState extends State<MainPage> {
   int _selectedIndex = 0;
   final List<Widget> _screens = [
+    HomePage(),
     AddressesPage(),
+    RoutePage(),
     HistoryPage(),
     ProfilePage(),
-    RoutePage()
   ];
   @override
   Widget build(BuildContext context) {
@@ -36,27 +38,33 @@ class _HomePageState extends State<HomePage> {
           FlashyTabBarItem(
             activeColor: AppColors.activeDefaultButton,
             inactiveColor: AppColors.inactiveButtonColor,
-            icon: Icon(Icons.location_pin),
-            title: Text('Route')
-            ),
+            icon: Icon(Icons.home, size: 28),
+            title: Text('Home'),
+          ),
           FlashyTabBarItem(
             activeColor: AppColors.activeDefaultButton,
             inactiveColor: AppColors.inactiveButtonColor,
-            icon: Icon(Icons.map),
-            title: Text('Addresses')
-            ),
+            icon: Icon(Icons.location_pin, size: 28),
+            title: Text('Addresses'),
+          ),
           FlashyTabBarItem(
             activeColor: AppColors.activeDefaultButton,
             inactiveColor: AppColors.inactiveButtonColor,
-            icon: Icon(Icons.history),
+            icon: Icon(Icons.map, size: 28),
+            title: Text('Route'),
+          ),
+          FlashyTabBarItem(
+            activeColor: AppColors.activeDefaultButton,
+            inactiveColor: AppColors.inactiveButtonColor,
+            icon: Icon(Icons.history, size: 28),
             title: Text('History'),
           ),
           FlashyTabBarItem(
             activeColor: AppColors.activeDefaultButton,
             inactiveColor: AppColors.inactiveButtonColor,
-            icon: Icon(Icons.person),
-            title: Text('Profile')
-            ),
+            icon: Icon(Icons.person, size: 28),
+            title: Text('Profile'),
+          ),
         ],
       ),
     );
