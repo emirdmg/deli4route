@@ -1,5 +1,5 @@
-import 'package:deli4route/Colors/app_colors.dart';
-import 'package:deli4route/Pages/HomePage/create_route_page.dart';
+import 'package:deli4route/core/colors/app_colors.dart';
+import 'package:deli4route/features/home/pages/create_route_page.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {

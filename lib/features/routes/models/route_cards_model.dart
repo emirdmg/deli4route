@@ -1,4 +1,4 @@
-import 'package:deli4route/Colors/app_colors.dart';
+import 'package:deli4route/core/colors/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 class MyRouteCard extends StatelessWidget {

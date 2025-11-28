@@ -1,5 +1,5 @@
-import 'package:deli4route/Colors/app_colors.dart';
-import 'package:deli4route/Pages/onboarding_page.dart';
+import 'package:deli4route/core/colors/app_colors.dart';
+import 'package:deli4route/features/onboarding/pages/onboarding_page.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 

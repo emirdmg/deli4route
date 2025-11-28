@@ -1,5 +1,5 @@
-import 'package:deli4route/Colors/app_colors.dart';
-import 'package:deli4route/Pages/Welcome/auth_landing_page.dart';
+import 'package:deli4route/core/colors/app_colors.dart';
+import 'package:deli4route/features/auth/pages/auth_landing_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:introduction_screen/introduction_screen.dart';

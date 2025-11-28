@@ -1,4 +1,4 @@
-import 'package:deli4route/Pages/Welcome/splash_screen.dart';
+import 'package:deli4route/features/onboarding/pages/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
