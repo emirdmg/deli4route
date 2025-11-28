@@ -1,5 +1,5 @@
-import 'package:deli4route/Colors/app_colors.dart';
-import 'package:deli4route/Pages/main_page.dart';
+import 'package:deli4route/core/colors/app_colors.dart';
+import 'package:deli4route/features/navigation/pages/app_shell.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -48,7 +48,7 @@ class AuthLandingPage extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (builder) => MainPage()),
+                      MaterialPageRoute(builder: (builder) => AppShell()),
                     );
                   },
                   child: const Text(
