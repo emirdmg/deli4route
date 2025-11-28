@@ -1,6 +1,6 @@
 import 'package:deli4route/Colors/app_colors.dart';
 import 'package:deli4route/Pages/NavPages/history_page.dart';
-import 'package:deli4route/Pages/NavPages/home_page.dart';
+import 'package:deli4route/Pages/HomePage/home_page.dart';
 import 'package:deli4route/Pages/NavPages/profile_page.dart';
 import 'package:deli4route/Pages/NavPages/route_page.dart';
 import 'package:flashy_tab_bar2/flashy_tab_bar2.dart';
