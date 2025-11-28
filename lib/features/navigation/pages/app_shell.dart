@@ -1,19 +1,19 @@
-import 'package:deli4route/Colors/app_colors.dart';
-import 'package:deli4route/Pages/NavPages/history_page.dart';
-import 'package:deli4route/Pages/HomePage/home_page.dart';
-import 'package:deli4route/Pages/NavPages/profile_page.dart';
-import 'package:deli4route/Pages/NavPages/route_page.dart';
+import 'package:deli4route/core/colors/app_colors.dart';
+import 'package:deli4route/features/navigation/pages/history_page.dart';
+import 'package:deli4route/features/home/pages/home_page.dart';
+import 'package:deli4route/features/navigation/pages/profile_page.dart';
+import 'package:deli4route/features/navigation/pages/route_page.dart';
 import 'package:flashy_tab_bar2/flashy_tab_bar2.dart';
 import 'package:flutter/material.dart';
 
-class MainPage extends StatefulWidget {
-  const MainPage({super.key});
+class AppShell extends StatefulWidget {
+  const AppShell({super.key});
 
   @override
-  State<MainPage> createState() => _MainPageState();
+  State<AppShell> createState() => _AppShellState();
 }
 
-class _MainPageState extends State<MainPage> {
+class _AppShellState extends State<AppShell> {
   int _selectedIndex = 0;
   final List<Widget> _screens = [
     HomePage(),
