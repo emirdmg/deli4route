@@ -1,4 +1,4 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_riverpod/legacy.dart';
 
 // 1. Notifier Sınıfı: Bu sınıf "Logic" yani mantığı tutar.
 class NavigationNotifier extends StateNotifier<int> {
