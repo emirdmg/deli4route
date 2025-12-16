@@ -1,14 +1,18 @@
 import 'package:deli4route/features/onboarding/pages/splash_screen.dart';
+import 'package:deli4route/firebase_options.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-void main() {
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   
-  runApp(
-    const ProviderScope(
-      child: MyApp(),
-    )
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
   );
+
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends ConsumerWidget {
@@ -24,7 +28,7 @@ class MyApp extends ConsumerWidget {
         textTheme: GoogleFonts.lexendTextTheme(),
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
       ),
-      home: const SplashScreen()
+      home: const SplashScreen(),
     );
   }
 }
