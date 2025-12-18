@@ -38,6 +38,7 @@ The app is developed using **Flutter & Dart**.
 ---
 
 ## 📂 Project Folder Structure
+```text
 
 lib/
 ├── core/
@@ -81,6 +82,7 @@ lib/
 │    │     └── widgets/
 │
 └── main.dart
+```
 
 ---
 
