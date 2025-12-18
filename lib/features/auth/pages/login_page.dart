@@ -1,6 +1,7 @@
 import 'package:deli4route/features/navigation/pages/app_shell.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -47,6 +48,13 @@ class _LoginPageState extends State<LoginPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
+              SizedBox(
+                height: 220,
+                child: SvgPicture.asset(
+                  'assets/login.svg',
+                  fit: BoxFit.contain,
+                ),
+              ),
               TextFormField(
                 controller: emailController,
                 keyboardType: TextInputType.emailAddress,

@@ -1,6 +1,6 @@
 import 'package:deli4route/core/colors/app_colors.dart';
 import 'package:deli4route/features/auth/pages/login_page.dart';
-import 'package:deli4route/features/navigation/pages/app_shell.dart';
+import 'package:deli4route/features/auth/pages/signup_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -82,7 +82,12 @@ class AuthLandingPage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(14),
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (builder) => SignupPage()),
+                    );
+                  },
                   child: const Text(
                     "Sign Up",
                     style: TextStyle(
