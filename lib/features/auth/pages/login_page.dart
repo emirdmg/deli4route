@@ -131,21 +131,28 @@ class _LoginPageState extends State<LoginPage> {
         
                 const SizedBox(height: 16),
         
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: AppColors.activeDefaultButton
-                  ),
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      login();
-                    }
-                  },
-                  child: const Text(
-                    'Login',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: AppColors.inactiveButtonColor
+                SizedBox(
+                  width: 160,
+                  height: 52,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: AppColors.activeDefaultButton,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(14)
+                      )
+                    ),
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        login();
+                      }
+                    },
+                    child: const Text(
+                      'Login',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white
+                      ),
                     ),
                   ),
                 ),

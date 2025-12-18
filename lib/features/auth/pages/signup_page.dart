@@ -238,48 +238,62 @@ class _SignupPageState extends State<SignupPage> {
                   },
                 ),
 
-                SizedBox(height: 8),
+                SizedBox(height: 20),
                 Visibility(
                   visible: !isActiveLoginButton,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.activeDefaultButton,
-                    ),
-                    onPressed: () {
-                      if (_formKey.currentState!.validate()) {
-                        signUp();
-                      }
-                    },
-                    child: const Text(
-                      'Sign Up',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        color: AppColors.inactiveButtonColor,
+                  child: SizedBox(
+                    width: 160,
+                    height: 52,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColors.activeDefaultButton,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(14)
+                        )
+                      ),
+                      onPressed: () {
+                        if (_formKey.currentState!.validate()) {
+                          signUp();
+                        }
+                      },
+                      child: const Text(
+                        'Sign Up',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                   ),
                 ),
 
-                SizedBox(height: 8),
+                SizedBox(height: 20),
                 Visibility(
                   visible: isActiveLoginButton,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xFFB4E50D),
-                    ),
-                    onPressed: () {
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(builder: (builder) => LoginPage()),
-                      );
-                    },
-                    child: const Text(
-                      'Login',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        color: AppColors.inactiveButtonColor,
+                  child: SizedBox(
+                    height: 52,
+                    width: 160,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Color(0xFFB4E50D),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(14)
+                        )
+                      ),
+                      onPressed: () {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(builder: (builder) => LoginPage()),
+                        );
+                      },
+                      child: const Text(
+                        'Login',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                   ),

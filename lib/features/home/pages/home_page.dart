@@ -29,7 +29,7 @@ class _HomePageState extends State<HomePage> {
                 backgroundColor: AppColors.activeDefaultButton,
               ),
               child: Text(
-                'Rota Oluştur',
+                'Create Route',
                 style: TextStyle(color: Colors.black),
               ),
             ),

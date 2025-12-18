@@ -98,9 +98,18 @@ class AuthLandingPage extends StatelessWidget {
                   ),
                 ),
               ),
-
-              const SizedBox(height: 24),
             ],
+          ),
+        ),
+      ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.all(12),
+        child: Text(
+          '© 2025 Deli4Route | Developed by Emirhan Sen\nAll rights reserved.',
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontSize: 12,
+            color: Colors.grey
           ),
         ),
       ),
