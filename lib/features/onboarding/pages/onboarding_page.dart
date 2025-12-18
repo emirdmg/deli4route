@@ -14,7 +14,7 @@ class OnboardingPage extends StatelessWidget {
         pages: [
           PageViewModel(
             titleWidget: Text(
-              "Ürün Listeni Hazırla",
+              "Create Delivery List",
               style: TextStyle(
                 fontSize: 28,
                 fontWeight: FontWeight.bold,
@@ -23,7 +23,7 @@ class OnboardingPage extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             bodyWidget: Text(
-              "Ürünlerinin listesini yazıya dök.",
+              "Define your delivery points.",
               style: TextStyle(
                 fontSize: 16,
                 color: Colors.black54,
@@ -42,7 +42,7 @@ class OnboardingPage extends StatelessWidget {
           ),
           PageViewModel(
             titleWidget: Text(
-              "Listeyi Yükle",
+              "Upload the List",
               style: TextStyle(
                 fontSize: 28,
                 fontWeight: FontWeight.bold,
@@ -51,7 +51,7 @@ class OnboardingPage extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             bodyWidget: Text(
-              "Listenin rotaya dönüştürülmesini bekle.",
+              "Wait while the list is converted into a route.",
               style: TextStyle(
                 fontSize: 16,
                 color: Colors.black54,
@@ -70,7 +70,7 @@ class OnboardingPage extends StatelessWidget {
           ),
           PageViewModel(
             titleWidget: Text(
-              "Yola Çık",
+              "Hit the Road!",
               style: TextStyle(
                 fontSize: 28,
                 fontWeight: FontWeight.bold,
@@ -79,7 +79,7 @@ class OnboardingPage extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             bodyWidget: Text(
-              "Belirlenen rotayı kullan, zaman kazan.",
+              "Use the optimized route. Save time.",
               style: TextStyle(
                 fontSize: 16,
                 color: Colors.black54,
@@ -104,7 +104,7 @@ class OnboardingPage extends StatelessWidget {
         done: Text('Start', style: TextStyle(color: AppColors.activeDefaultButton)),
         showSkipButton: true,
         skip: const Text(
-          "Geç",
+          "Skip",
           style: TextStyle(
             fontWeight: FontWeight.w500,
             fontSize: 15,

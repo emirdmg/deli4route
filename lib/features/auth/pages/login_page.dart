@@ -43,110 +43,114 @@ class _LoginPageState extends State<LoginPage> {
           icon: Icon(Icons.arrow_back_ios),
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              SizedBox(
-                height: 220,
-                child: SvgPicture.asset(
-                  'assets/login.svg',
-                  fit: BoxFit.contain,
-                ),
-              ),
-              TextFormField(
-                controller: emailController,
-                keyboardType: TextInputType.emailAddress,
-                decoration: InputDecoration(
-                  enabledBorder: AppBorders.enabled,
-                  focusedBorder: AppBorders.focused,
-                  errorBorder: AppBorders.error,
-                  focusedErrorBorder: AppBorders.focusedError,
-                  labelText: 'E-mail',
-                  labelStyle: TextStyle(
-                    color: AppColors.inactiveButtonColor
-                    
-                  ),
-                  border: const OutlineInputBorder(),
-                ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'E-posta bos olamaz';
-                  }
-                  if (!value.contains('@')) {
-                    return 'Gecerli bir e-posta gir.';
-                  }
-                  return null;
-                },
-              ),
-
-              const SizedBox(height: 16),
-
-              TextFormField(
-                controller: passwordController,
-                obscureText: true,
-                decoration: InputDecoration(
-                  enabledBorder: AppBorders.enabled,
-                  focusedBorder: AppBorders.focused,
-                  errorBorder: AppBorders.error,
-                  focusedErrorBorder: AppBorders.focusedError,
-                  labelText: 'Password',
-                  labelStyle: TextStyle(
-                    color: AppColors.inactiveButtonColor
-                  ),
-                  border: const OutlineInputBorder(
-                    
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(24),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SizedBox(
+                  height: 220,
+                  child: SvgPicture.asset(
+                    'assets/login.svg',
+                    fit: BoxFit.contain,
                   ),
                 ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Sifre bos olamaz';
-                  }
-                  if (value.length < 6) {
-                    return 'Sifre en az 6 karakter olmali.';
-                  }
-                  return null;
-                },
-              ),
-
-              const SizedBox(height: 8),
-
-              Align(
-                alignment: Alignment.centerLeft,
-                child: TextButton(
-                  onPressed: () {
-                    //Sifre yenileme sayfasi
+                TextFormField(
+                  controller: emailController,
+                  keyboardType: TextInputType.emailAddress,
+                  decoration: InputDecoration(
+                    enabledBorder: AppBorders.enabled,
+                    focusedBorder: AppBorders.focused,
+                    errorBorder: AppBorders.error,
+                    focusedErrorBorder: AppBorders.focusedError,
+                    labelText: 'E-mail',
+                    labelStyle: TextStyle(
+                      color: AppColors.inactiveButtonColor
+                      
+                    ),
+                    border: const OutlineInputBorder(),
+                  ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'E-posta bos olamaz';
+                    }
+                    if (!value.contains('@')) {
+                      return 'Gecerli bir e-posta gir.';
+                    }
+                    return null;
                   },
-                  child: const Text('Sifremi unuttum',
-                  style: TextStyle(
-                    color: AppColors.inactiveButtonColor
+                ),
+        
+                const SizedBox(height: 16),
+        
+                TextFormField(
+                  controller: passwordController,
+                  obscureText: true,
+                  decoration: InputDecoration(
+                    enabledBorder: AppBorders.enabled,
+                    focusedBorder: AppBorders.focused,
+                    errorBorder: AppBorders.error,
+                    focusedErrorBorder: AppBorders.focusedError,
+                    labelText: 'Password',
+                    labelStyle: TextStyle(
+                      color: AppColors.inactiveButtonColor
+                    ),
+                    border: const OutlineInputBorder(
+                      
+                    ),
                   ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Sifre bos olamaz';
+                    }
+                    if (value.length < 6) {
+                      return 'Sifre en az 6 karakter olmali.';
+                    }
+                    return null;
+                  },
+                ),
+        
+                const SizedBox(height: 8),
+        
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: TextButton(
+                    onPressed: () {
+                      //Sifre yenileme sayfasi
+                    },
+                    child: const Text('Forgot your password?',
+                    style: TextStyle(
+                      color: AppColors.inactiveButtonColor
+                    ),
+                    ),
                   ),
                 ),
-              ),
-
-              const SizedBox(height: 16),
-
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.activeDefaultButton
-                ),
-                onPressed: () {
-                  if (_formKey.currentState!.validate()) {
-                    login();
-                  }
-                },
-                child: const Text(
-                  'Login',
-                  style: TextStyle(
-                    color: AppColors.inactiveButtonColor
+        
+                const SizedBox(height: 16),
+        
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.activeDefaultButton
+                  ),
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      login();
+                    }
+                  },
+                  child: const Text(
+                    'Login',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: AppColors.inactiveButtonColor
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

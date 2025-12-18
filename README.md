@@ -131,7 +131,7 @@ flutter run
 Flutter Developer • Mobile Applications & Technology  
 
 GitHub: https://github.com/emirhansen  
-LinkedIn: (optional)
+LinkedIn: [text](https://www.linkedin.com/in/emirdmg/)
 
 ---
 
