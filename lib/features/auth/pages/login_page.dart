@@ -1,3 +1,5 @@
+import 'package:deli4route/core/colors/app_colors.dart';
+import 'package:deli4route/core/theme/app_borders.dart';
 import 'package:deli4route/features/navigation/pages/app_shell.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -46,7 +48,7 @@ class _LoginPageState extends State<LoginPage> {
         child: Form(
           key: _formKey,
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(
                 height: 220,
@@ -58,9 +60,17 @@ class _LoginPageState extends State<LoginPage> {
               TextFormField(
                 controller: emailController,
                 keyboardType: TextInputType.emailAddress,
-                decoration: const InputDecoration(
-                  labelText: 'E-posta',
-                  border: OutlineInputBorder(),
+                decoration: InputDecoration(
+                  enabledBorder: AppBorders.enabled,
+                  focusedBorder: AppBorders.focused,
+                  errorBorder: AppBorders.error,
+                  focusedErrorBorder: AppBorders.focusedError,
+                  labelText: 'E-mail',
+                  labelStyle: TextStyle(
+                    color: AppColors.inactiveButtonColor
+                    
+                  ),
+                  border: const OutlineInputBorder(),
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -78,9 +88,18 @@ class _LoginPageState extends State<LoginPage> {
               TextFormField(
                 controller: passwordController,
                 obscureText: true,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
+                  enabledBorder: AppBorders.enabled,
+                  focusedBorder: AppBorders.focused,
+                  errorBorder: AppBorders.error,
+                  focusedErrorBorder: AppBorders.focusedError,
                   labelText: 'Password',
-                  border: OutlineInputBorder(),
+                  labelStyle: TextStyle(
+                    color: AppColors.inactiveButtonColor
+                  ),
+                  border: const OutlineInputBorder(
+                    
+                  ),
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -101,19 +120,31 @@ class _LoginPageState extends State<LoginPage> {
                   onPressed: () {
                     //Sifre yenileme sayfasi
                   },
-                  child: const Text('Sifremi unuttum'),
+                  child: const Text('Sifremi unuttum',
+                  style: TextStyle(
+                    color: AppColors.inactiveButtonColor
+                  ),
+                  ),
                 ),
               ),
 
               const SizedBox(height: 16),
 
               ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: AppColors.activeDefaultButton
+                ),
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
                     login();
                   }
                 },
-                child: const Text('Giris Yap'),
+                child: const Text(
+                  'Login',
+                  style: TextStyle(
+                    color: AppColors.inactiveButtonColor
+                  ),
+                ),
               ),
             ],
           ),

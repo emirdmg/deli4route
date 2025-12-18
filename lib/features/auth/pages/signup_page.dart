@@ -1,3 +1,4 @@
+import 'package:deli4route/core/theme/app_borders.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -45,9 +46,13 @@ class _SignupPageState extends State<SignupPage> {
               TextFormField(
                 controller: nameController,
                 keyboardType: TextInputType.name,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
+                  enabledBorder: AppBorders.enabled,
+                  focusedBorder: AppBorders.focused,
+                  errorBorder: AppBorders.error,
+                  focusedErrorBorder: AppBorders.focusedError,
                   labelText: 'Name',
-                  border: OutlineInputBorder(),
+                  border: const OutlineInputBorder(),
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -64,7 +69,11 @@ class _SignupPageState extends State<SignupPage> {
 
               TextFormField(
                 controller: surnameController,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
+                  enabledBorder: AppBorders.enabled,
+                  focusedBorder: AppBorders.focused,
+                  errorBorder: AppBorders.error,
+                  focusedErrorBorder: AppBorders.focusedError,
                   labelText: 'Surname',
                   border: OutlineInputBorder(),
                 ),
@@ -84,7 +93,11 @@ class _SignupPageState extends State<SignupPage> {
               TextFormField(
                 controller: emailController,
                 keyboardType: TextInputType.emailAddress,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
+                  enabledBorder: AppBorders.enabled,
+                  focusedBorder: AppBorders.focused,
+                  errorBorder: AppBorders.error,
+                  focusedErrorBorder: AppBorders.focusedError,
                   labelText: 'E-mail',
                   border: OutlineInputBorder(),
                 ),
@@ -105,7 +118,11 @@ class _SignupPageState extends State<SignupPage> {
                 controller: passwordController,
                 obscureText: true,
                 keyboardType: TextInputType.visiblePassword,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
+                  enabledBorder: AppBorders.enabled,
+                  focusedBorder: AppBorders.focused,
+                  errorBorder: AppBorders.error,
+                  focusedErrorBorder: AppBorders.focusedError,
                   labelText: 'Password',
                   border: OutlineInputBorder(),
                 ),
