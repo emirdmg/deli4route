@@ -1,5 +1,7 @@
 import 'package:deli4route/core/colors/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -9,15 +11,18 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  Future<DocumentSnapshot> getUserData() async {
+    final uid = FirebaseAuth.instance.currentUser!.uid;
+    return FirebaseFirestore.instance.collection('users').doc(uid).get();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Row(
           mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Text('Profile')
-          ],
+          children: [Text('Profile')],
         ),
         automaticallyImplyLeading: false,
       ),
@@ -50,14 +55,31 @@ class _ProfilePageState extends State<ProfilePage> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
-                        'Emirhan Sen',
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
-                      )
+                      FutureBuilder<DocumentSnapshot>(
+                        future: getUserData(),
+                        builder: (context, snapshot) {
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return const Text("");
+                          }
+
+                          if (!snapshot.hasData || !snapshot.data!.exists) {
+                            return const Text("");
+                          }
+
+                          final data =
+                              snapshot.data!.data() as Map<String, dynamic>;
+                          final String name = data['name'];
+
+                          return Text(
+                            name,
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                            ),
+                          );
+                        },
+                      ),
                     ],
                     //name and surname
                   ),

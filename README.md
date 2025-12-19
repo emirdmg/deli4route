@@ -233,7 +233,15 @@ lib/
 
 ## 📸 Ekran Görüntüleri (Daha sonra eklenecek)
 
+<p align="center">
+  <img src="assets/screenshots/ss_auth.png" width="250">
+  <img src="assets/screenshots/ss_tour.png" width="250">
+  <img src="assets/screenshots/ss_tour_2.png" width="250">
+  <img src="assets/screenshots/ss_tour_3.png" width="250">
+  <img src="assets/screenshots/ss_login.png" width="250">
+  <img src="assets/screenshots/ss_signup.png" width="250">
 
+</p>
 
 ---
 
