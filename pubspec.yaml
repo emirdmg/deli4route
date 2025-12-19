@@ -47,6 +47,9 @@ dependencies:
   flutter_riverpod: ^3.0.3
   firebase_core: ^4.3.0
   firebase_auth: ^6.1.3
+  flutter_launcher_icons: ^0.14.4
+
+
 
 dev_dependencies:
   flutter_test:
@@ -102,3 +105,7 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/deli4route_logo_sq.png"

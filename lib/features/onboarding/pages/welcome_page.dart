@@ -63,7 +63,7 @@ class _WelcomePageState extends State<WelcomePage> {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.activeDefaultButton,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(14),
+                      borderRadius: BorderRadius.circular(30),
                     ),
                   ),
                   onPressed: () {
@@ -74,7 +74,7 @@ class _WelcomePageState extends State<WelcomePage> {
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w600,
-                      color: Colors.black
+                      color: Colors.white
                     ),
                   ),
                 ),
