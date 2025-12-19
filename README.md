@@ -86,23 +86,28 @@ lib/
 
 ---
 
-## 📸 Screenshots (Coming Soon)
+## 📸 Screenshots
 
-- Splash Screen  
-- Onboarding  
-- Home Page  
-- Route Creation  
+<p align="center">
+  <img src="assets/screenshots/ss_auth.png" width="250">
+  <img src="assets/screenshots/ss_tour.png" width="250">
+  <img src="assets/screenshots/ss_tour_2.png" width="250">
+  <img src="assets/screenshots/ss_tour_3.png" width="250">
+  <img src="assets/screenshots/ss_login.png" width="250">
+  <img src="assets/screenshots/ss_signup.png" width="250">
+</p> 
 
 ---
 
 ## 📅 Roadmap
 
-### ✔ Completed
+### ✅ Completed
 - Project setup  
 - Page structure  
 - Splash & onboarding  
 - UI components  
 - Color management
+- Firebase Firestore
 
 ### 🛠 In Progress
 - Home page design  
@@ -110,8 +115,7 @@ lib/
 
 ### 🚧 Planned
 - OCR-based package scanning  
-- Map & navigation integration  
-- Firebase / REST API  
+- Map & navigation integration
 - Route optimization algorithms  
 - User profile  
 - Business modules
@@ -231,7 +235,7 @@ lib/
 
 ---
 
-## 📸 Ekran Görüntüleri (Daha sonra eklenecek)
+## 📸 Ekran Görüntüleri
 
 <p align="center">
   <img src="assets/screenshots/ss_auth.png" width="250">
@@ -240,27 +244,27 @@ lib/
   <img src="assets/screenshots/ss_tour_3.png" width="250">
   <img src="assets/screenshots/ss_login.png" width="250">
   <img src="assets/screenshots/ss_signup.png" width="250">
-
 </p>
 
 ---
 
 ## 📅 Yol Haritası (Roadmap)
 
+### ✅ Tamamlandı
 - Proje kurulumu  
 - Sayfa yapısı  
 - Splash & Onboarding  
 - UI bileşenleri  
 - Renk yönetimi  
 
-Yapım Aşamasında:  
+### 🛠️ Yapım Aşamasında:  
 - Ana sayfa tasarımı  
 - Rota oluşturma akışı  
+- Firebase Firestore
 
-Planlanan:  
+### 🚧 Planlanan:  
 - OCR  
-- Harita entegrasyonu  
-- Firebase / REST API  
+- Harita entegrasyonu
 - Rota optimizasyon algoritmaları  
 - Kullanıcı profili  
 - İşletmelere özel modüller
