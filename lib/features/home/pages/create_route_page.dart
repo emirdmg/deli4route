@@ -32,10 +32,10 @@ class _CreateRoutePageState extends State<CreateRoutePage> {
               padding: EdgeInsets.all(16),
               children: [
                 MyRouteCard(
-                  title: 'Import from CSV file',
+                  title: 'Import from Excel or CSV file',
                   subTitle: 'Upload delivery addresses from CSV',
                   onTap: () {
-                    pickFile();
+                    showMyDialog(context);
                   },
                 ),
 
@@ -73,4 +73,32 @@ class _CreateRoutePageState extends State<CreateRoutePage> {
       ),
     );
   }
+}
+
+void showMyDialog(BuildContext context) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: const Text("Choose one"),
+        content: const Text("Devam etmek istiyor musun?"),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+              pickExcelFile();
+            },
+            child: const Text("Upload my file"),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+              downloadExcelTemplate();
+            },
+            child: const Text("Download the template"),
+          ),
+        ],
+      );
+    },
+  );
 }
