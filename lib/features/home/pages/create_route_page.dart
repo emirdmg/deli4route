@@ -40,32 +40,31 @@ class _CreateRoutePageState extends State<CreateRoutePage> {
                 ),
 
                 MyRouteCard(
-                  title: 'Import from Text',
-                  subTitle: 'Paste addresses as plain text',
+                  title: 'Coming Soon...',
+                  subTitle: '',
                   onTap: () {},
                 ),
 
-                MyRouteCard(
-                  title: 'Import from Picture',
-                  subTitle: 'Scan addresses from an image (OCR)',
-                  onTap: () {},
-                ),
-
-                MyRouteCard(
-                  title: 'Import from Sheet\n(Excel, Google Sheets)',
-                  subTitle: 'Import from Excel or Sheets',
-                  onTap: () {},
-                ),
-                MyRouteCard(
-                  title: 'Title 5',
-                  subTitle: 'Subtitle 5',
-                  onTap: () {},
-                ),
-                MyRouteCard(
-                  title: 'Title 6',
-                  subTitle: 'Subtitle 6',
-                  onTap: () {},
-                ),
+                // MyRouteCard(
+                //   title: 'Import from Text',
+                //   subTitle: 'Paste addresses as plain text',
+                //   onTap: () {},
+                // ),
+                // MyRouteCard(
+                //   title: 'Import from Sheet\n(Excel, Google Sheets)',
+                //   subTitle: 'Import from Excel or Sheets',
+                //   onTap: () {},
+                // ),
+                // MyRouteCard(
+                //   title: 'Title 5',
+                //   subTitle: 'Subtitle 5',
+                //   onTap: () {},
+                // ),
+                // MyRouteCard(
+                //   title: 'Title 6',
+                //   subTitle: 'Subtitle 6',
+                //   onTap: () {},
+                // ),
               ],
             ),
           ),
