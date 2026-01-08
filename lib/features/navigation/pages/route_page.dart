@@ -28,7 +28,7 @@ class _RoutePageState extends State<RoutePage> {
     return Scaffold(
       body: FlutterMap(
         options: const MapOptions(
-          initialCenter: LatLng(41.015137, 28.979530),
+          initialCenter: LatLng(41.015137, 28.979530),// kullanici konumu gelecek
           initialZoom: 13,
         ),
         children: [

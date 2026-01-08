@@ -1,35 +1,24 @@
 import 'package:deli4route/core/colors/app_colors.dart';
 import 'package:deli4route/core/theme/app_borders.dart';
-import 'package:deli4route/features/auth/pages/reset-password/forgot_password.dart';
-import 'package:deli4route/features/navigation/pages/app_shell.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:deli4route/features/auth/pages/reset-password/verify_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class ForgotPasswordPage extends StatefulWidget {
+  const ForgotPasswordPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<ForgotPasswordPage> createState() => _ForgotPasswordPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   final emailController = TextEditingController();
-  final passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
-  Future<void> login() async {
-    try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: emailController.text.trim(),
-        password: passwordController.text.trim(),
-      );
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => const AppShell()),
-      );
-    } on FirebaseAuthException catch (e) {
-      debugPrint(e.message);
-    }
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    super.dispose();
   }
 
   @override
@@ -84,51 +73,6 @@ class _LoginPageState extends State<LoginPage> {
 
                 const SizedBox(height: 16),
 
-                TextFormField(
-                  controller: passwordController,
-                  obscureText: true,
-                  decoration: InputDecoration(
-                    enabledBorder: AppBorders.enabled,
-                    focusedBorder: AppBorders.focused,
-                    errorBorder: AppBorders.error,
-                    focusedErrorBorder: AppBorders.focusedError,
-                    labelText: 'Password',
-                    labelStyle: TextStyle(color: AppColors.inactiveButtonColor),
-                    border: const OutlineInputBorder(),
-                  ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Sifre bos olamaz';
-                    }
-                    if (value.length < 6) {
-                      return 'Sifre en az 6 karakter olmali.';
-                    }
-                    return null;
-                  },
-                ),
-
-                const SizedBox(height: 8),
-
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: TextButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (builder) => ForgotPasswordPage(),
-                        ),
-                      );
-                    },
-                    child: const Text(
-                      'Forgot your password?',
-                      style: TextStyle(color: AppColors.inactiveButtonColor),
-                    ),
-                  ),
-                ),
-
-                const SizedBox(height: 16),
-
                 SizedBox(
                   width: 160,
                   height: 52,
@@ -141,11 +85,16 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
-                        login();
+                        print("Navigating to VerifyPage...");
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(builder: (builder) => VerifyPage()),
+                        );
                       }
+                      // Maile kod gönderimi
                     },
                     child: const Text(
-                      'Login',
+                      'Send a code',
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
@@ -162,14 +111,3 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 }
-
-
-// try {
-//                       await FirebaseAuth.instance.signInWithEmailAndPassword(
-//                         email: email,
-//                         password: password,
-//                       );
-//                     } on FirebaseAuthException catch (e) {
-//                       SnackBar(content: Text('Giris basarisiz'));
-//                     }
-
