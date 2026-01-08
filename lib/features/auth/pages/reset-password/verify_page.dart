@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:deli4route/core/colors/app_colors.dart';
+import 'package:deli4route/features/auth/pages/reset-password/new_password.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:pinput/pinput.dart';
@@ -16,6 +17,7 @@ class _VerifyPageState extends State<VerifyPage> {
   bool _isResendActive = true;
   Timer? _timer;
   int _start = 20;
+  String pin = "";
 
   void startTimer() {
     setState(() {
@@ -99,7 +101,10 @@ class _VerifyPageState extends State<VerifyPage> {
               length: 6,
               defaultPinTheme: defaultPinTheme,
               focusedPinTheme: focusedPinTheme,
-              onCompleted: (pin) {
+              onCompleted: (value) {
+                setState(() {
+                  pin = value;
+                });
                 // Kod tamamlandığında API'ye gönderilecek fonksiyon
                 print("Girilen Kod: $pin");
               },
@@ -146,7 +151,20 @@ class _VerifyPageState extends State<VerifyPage> {
                   ),
                 ),
                 onPressed: () {
-                  // Maile kod gönderimi
+                  if (pin.length == 6) {
+                    if (pin == '000000') {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(builder: (builder) => NewPassword()),
+                      );
+                      print('Başarılı');
+                      // nav push yeni sifre ekrani
+                    } else {
+                      print('Hatalı kod');
+                    }
+                  } else {
+                    print('Lütfen 6 haneli kodu tamamlayın.');
+                  }
                 },
                 child: const Text(
                   'Verify',
