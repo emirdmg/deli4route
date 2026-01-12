@@ -1,7 +1,9 @@
 import 'package:deli4route/core/colors/app_colors.dart';
+import 'package:deli4route/features/onboarding/pages/welcome_page.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -20,6 +22,14 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          IconButton(
+            icon: Icon(Icons.logout),
+            onPressed: () {
+              LogoutService.showLogoutDialog(context);
+            },
+          ),
+        ],
         title: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [Text('Profile')],
@@ -73,10 +83,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
                           return Text(
                             name,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 18,
-                            ),
+                            style: TextStyle(color: Colors.white, fontSize: 18),
                           );
                         },
                       ),
@@ -90,6 +97,48 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class LogoutService {
+  static Future<void> showLogoutDialog(BuildContext context) async {
+    return showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text("Oturumu Kapat"),
+        content: const Text("Çıkış yapmak istediğinize emin misiniz?"),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context), // İptal: Diyaloğu kapat
+            child: const Text("Vazgeç", style: TextStyle(color: AppColors.inactiveButtonColor),),
+          ),
+          TextButton(
+            onPressed: () async {
+              // 1. Firebase oturumunu kapat
+              await FirebaseAuth.instance.signOut();
+
+              // 2. Cihaz hafızasındaki giriş bilgisini sil
+              final prefs = await SharedPreferences.getInstance();
+              await prefs.setBool('isLoggedIn', false);
+
+              // 3. Diyaloğu kapat ve WelcomePage'e dön
+              if (!context.mounted) return;
+
+              // Tüm sayfaları temizleyerek WelcomePage'e gönderir
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (context) => const WelcomePage()),
+                (route) => false,
+              );
+            },
+            child: const Text(
+              "Çıkış Yap",
+              style: TextStyle(color: AppColors.activeDefaultButton),
+            ),
+          ),
+        ],
       ),
     );
   }

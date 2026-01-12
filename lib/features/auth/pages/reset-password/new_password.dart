@@ -40,8 +40,8 @@ class _NewPasswordState extends State<NewPassword> {
           elevation: 0, // Gölgeyi kaldır
           child: Center(
             child: Container(
-              width: 50,
-              height: 50,
+              width: 200,
+              height: 200,
               decoration: BoxDecoration(
                 color: Colors.white, // Beyaz bir kutu içinde göster
                 borderRadius: BorderRadius.circular(20),

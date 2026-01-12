@@ -5,6 +5,7 @@ import 'package:deli4route/features/navigation/pages/app_shell.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -19,16 +20,29 @@ class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
   Future<void> login() async {
     try {
+      // 1. Firebase ile giriş yap
       await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: emailController.text.trim(),
         password: passwordController.text.trim(),
       );
+
+      // 2. Giriş başarılıysa SharedPreferences'a kaydet
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setBool('isLoggedIn', true);
+
+      // 3. AppShell'e yönlendir
+      if (!mounted) return;
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => const AppShell()),
       );
     } on FirebaseAuthException catch (e) {
+      // Hata durumunda kullanıcıya bilgi vermek iyi bir pratik olur
       debugPrint(e.message);
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(e.message ?? "Bir hata oluştu")));
+      // Buraya bir SnackBar veya Alert ekleyebilirsin
     }
   }
 
