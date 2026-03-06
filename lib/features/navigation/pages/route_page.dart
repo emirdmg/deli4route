@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_map/flutter_map.dart';
-import 'package:latlong2/latlong.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart'; // Google Maps paketi
 
 class RoutePage extends StatefulWidget {
   const RoutePage({super.key});
@@ -11,6 +10,12 @@ class RoutePage extends StatefulWidget {
 }
 
 class _RoutePageState extends State<RoutePage> {
+  // Harita kontrolcüsü (ileride kamerayı hareket ettirmek için gerekecek)
+  late GoogleMapController mapController;
+
+  // Başlangıç konumu (İstanbul)
+  final LatLng _initialCenter = const LatLng(41.015137, 28.979530);
+
   @override
   void initState() {
     super.initState();
@@ -26,17 +31,21 @@ class _RoutePageState extends State<RoutePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: FlutterMap(
-        options: const MapOptions(
-          initialCenter: LatLng(41.015137, 28.979530),// kullanici konumu gelecek
-          initialZoom: 13,
+      // Kurye tam ekran harita görsün diye body'den başlıyoruz
+      body: GoogleMap(
+        initialCameraPosition: CameraPosition(
+          target: _initialCenter,
+          zoom: 13.0,
         ),
-        children: [
-          TileLayer(
-            urlTemplate: "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
-            userAgentPackageName: 'com.example.deli4route',
-          ),
-        ],
+        onMapCreated: (GoogleMapController controller) {
+          mapController = controller;
+        },
+        // Kuryenin nerede olduğunu görmesi için şu iki satır kritik:
+        myLocationEnabled: true, 
+        myLocationButtonEnabled: true,
+        
+        // Harita tipi (Normal, Uydu, Hibrit)
+        mapType: MapType.normal,
       ),
     );
   }
