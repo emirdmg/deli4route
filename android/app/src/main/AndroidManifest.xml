@@ -37,7 +37,7 @@
         <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
 <       uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
         <meta-data android:name="com.google.android.geo.API_KEY"
-               android:value="AIzaSyC81auWjhjg8BQKdRGJSgrcofbBCyJPiDo"/>
+               android:value="apiapiapi"/>
     </application>
     <!-- Required to query activities that can process text, see:
          https://developer.android.com/training/package-visibility and
