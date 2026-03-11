@@ -1,4 +1,6 @@
 import 'package:deli4route/core/colors/app_colors.dart';
+import 'package:deli4route/features/auth/pages/auth_landing_page.dart';
+import 'package:deli4route/features/auth/pages/login_page.dart';
 import 'package:deli4route/features/onboarding/pages/welcome_page.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -129,7 +131,7 @@ class LogoutService {
               // Tüm sayfaları temizleyerek WelcomePage'e gönderir
               Navigator.pushAndRemoveUntil(
                 context,
-                MaterialPageRoute(builder: (context) => const WelcomePage()),
+                MaterialPageRoute(builder: (context) => const AuthLandingPage()),
                 (route) => false,
               );
             },

@@ -18,7 +18,7 @@ class _AppShellState extends State<AppShell> {
   final List<Widget> _screens = [
     HomePage(),
     RoutePage(),
-    HistoryPage(),
+    // HistoryPage(),
     ProfilePage(),
   ];
   @override
@@ -43,15 +43,15 @@ class _AppShellState extends State<AppShell> {
           FlashyTabBarItem(
             activeColor: AppColors.activeDefaultButton,
             inactiveColor: AppColors.inactiveButtonColor,
-            icon: Icon(Icons.map, size: 28),
+            icon: Icon(Icons.add, size: 28),
             title: Text('Route'),
           ),
-          FlashyTabBarItem(
-            activeColor: AppColors.activeDefaultButton,
-            inactiveColor: AppColors.inactiveButtonColor,
-            icon: Icon(Icons.history, size: 28),
-            title: Text('History'),
-          ),
+          // FlashyTabBarItem(
+          //   activeColor: AppColors.activeDefaultButton,
+          //   inactiveColor: AppColors.inactiveButtonColor,
+          //   icon: Icon(Icons.history, size: 28),
+          //   title: Text('History'),
+          // ),
           FlashyTabBarItem(
             activeColor: AppColors.activeDefaultButton,
             inactiveColor: AppColors.inactiveButtonColor,
