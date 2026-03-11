@@ -32,15 +32,14 @@ migrate_working_dir/
 .pub/
 /build/
 /coverage/
-
-# Symbolication related
 app.*.symbols
-
-# Obfuscation related
 app.*.map.json
-
-# Android Studio will place build artifacts here
 /android/app/debug
 /android/app/profile
 /android/app/release
+lib/firebase_options.dart
 *.env
+lib/config.dart
+ios/Runner/GoogleService-Info.plist
+android/app/google-services.json
+firebase.json

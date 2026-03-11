@@ -35,7 +35,7 @@ class _RoutePageState extends State<RoutePage> {
       body: GoogleMap(
         initialCameraPosition: CameraPosition(
           target: _initialCenter,
-          zoom: 13.0,
+          zoom: 11,
         ),
         onMapCreated: (GoogleMapController controller) {
           mapController = controller;
