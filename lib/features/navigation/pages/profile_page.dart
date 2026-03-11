@@ -1,7 +1,5 @@
 import 'package:deli4route/core/colors/app_colors.dart';
 import 'package:deli4route/features/auth/pages/auth_landing_page.dart';
-import 'package:deli4route/features/auth/pages/login_page.dart';
-import 'package:deli4route/features/onboarding/pages/welcome_page.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -93,7 +91,9 @@ class _ProfilePageState extends State<ProfilePage> {
                     //name and surname
                   ),
                   Spacer(),
-                  IconButton(onPressed: () {}, icon: Icon(Icons.edit)),
+                  IconButton(onPressed: () {
+
+                  }, icon: Icon(Icons.edit)),
                 ],
               ),
             ),

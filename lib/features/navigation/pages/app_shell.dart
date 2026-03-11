@@ -1,5 +1,4 @@
 import 'package:deli4route/core/colors/app_colors.dart';
-import 'package:deli4route/features/navigation/pages/history_page.dart';
 import 'package:deli4route/features/home/pages/home_page.dart';
 import 'package:deli4route/features/navigation/pages/profile_page.dart';
 import 'package:deli4route/features/navigation/pages/route_page.dart';
