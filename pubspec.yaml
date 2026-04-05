@@ -55,6 +55,7 @@ dependencies:
   pinput: ^6.0.1
   flutter_dotenv: ^6.0.0
   google_maps_flutter: ^2.14.2
+  fl_chart: ^1.2.0
 
 
 

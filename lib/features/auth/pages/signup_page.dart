@@ -22,6 +22,8 @@ class _SignupPageState extends State<SignupPage> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final passwordAgainController = TextEditingController();
+  final currencyRateController = TextEditingController();
+  String? _selectedCurrency = '₺';
   bool _isObscured = true;
 
   void showSnackBar(String message, {bool isError = false}) {
@@ -40,30 +42,36 @@ class _SignupPageState extends State<SignupPage> {
   }
 
   Future<void> signUp() async {
-    try {
-      // 1️⃣ Auth - kullanıcı oluştur
-      UserCredential userCredential = await FirebaseAuth.instance
-          .createUserWithEmailAndPassword(
-            email: emailController.text.trim(),
-            password: passwordController.text.trim(),
-          );
+  try {
+    // 1️⃣ Auth - kullanıcı oluştur
+    UserCredential userCredential = await FirebaseAuth.instance
+        .createUserWithEmailAndPassword(
+      email: emailController.text.trim(),
+      password: passwordController.text.trim(),
+    );
 
-      // 2️⃣ UID al
-      final String uid = userCredential.user!.uid;
+    // 2️⃣ UID al
+    final String uid = userCredential.user!.uid;
 
-      // 3️⃣ Firestore - user profili yaz
-      await FirebaseFirestore.instance.collection('users').doc(uid).set({
-        'name': nameController.text.trim(),
-        'surname': surnameController.text.trim(),
-        'email': emailController.text.trim(),
-        'createdAt': FieldValue.serverTimestamp(),
-      });
-      setState(() {
-        isActiveLoginButton = true;
-      });
+    // 3️⃣ Firestore - user profili yaz (BURAYI GÜNCELLEDİK)
+    await FirebaseFirestore.instance.collection('users').doc(uid).set({
+      'name': nameController.text.trim(),
+      'surname': surnameController.text.trim(),
+      'email': emailController.text.trim(),
+      'createdAt': FieldValue.serverTimestamp(),
+      
+      // YENİ EKLENEN STANDART ALANLAR:
+      'currency': _selectedCurrency,          // Dropdown'dan seçilen simge
+      'per_package_fee': 25,                 // Standart paket başı ücret (Değiştirebilirsin)
+      'completed_deliveries': 0,             // Yeni kullanıcı için her zaman 0
+    });
 
-      showSnackBar("Account created successfully 🎉");
-    } on FirebaseAuthException catch (e) {
+    setState(() {
+      isActiveLoginButton = true;
+    });
+
+    showSnackBar("Account created successfully 🎉");
+  } on FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-use') {
         showSnackBar("This email is already in use.", isError: true);
       } else if (e.code == 'weak-password') {
@@ -237,6 +245,48 @@ class _SignupPageState extends State<SignupPage> {
                     return null;
                   },
                 ),
+                Padding(padding: EdgeInsets.only(top: 10)),
+                DropdownButtonFormField<String>(
+                  value: _selectedCurrency,
+                  decoration: InputDecoration(
+                    labelText: 'Currency Type',
+                    enabledBorder: AppBorders.enabled,
+                    focusedBorder: AppBorders.focused,
+                    errorBorder: AppBorders.error,
+                    focusedErrorBorder: AppBorders.focusedError,
+                    border: const OutlineInputBorder(),
+                    prefixIcon: const Icon(Icons.payments_outlined),
+                  ),
+                  // Menü açıldığında görünecek liste
+                  items: const [
+                    DropdownMenuItem(
+                      value: '₺',
+                      child: Text("Turkish Lira (₺)"),
+                    ),
+                    DropdownMenuItem(
+                      value: '\$',
+                      child: Text("US Dollar (\$)"),
+                    ),
+                    DropdownMenuItem(value: '€', child: Text("Euro (€)")),
+                  ],
+                  onChanged: (String? newValue) {
+                    setState(() {
+                      _selectedCurrency = newValue;
+                    });
+                  },
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please select a currency';
+                    }
+                    return null;
+                  },
+                  // Dropdown'ın arka plan rengi ve stili
+                  dropdownColor: Colors.white,
+                  icon: const Icon(
+                    Icons.arrow_drop_down_circle_outlined,
+                    color: Colors.orange,
+                  ),
+                ),
 
                 SizedBox(height: 20),
                 Visibility(
@@ -248,8 +298,8 @@ class _SignupPageState extends State<SignupPage> {
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.activeDefaultButton,
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(14)
-                        )
+                          borderRadius: BorderRadius.circular(14),
+                        ),
                       ),
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
@@ -278,8 +328,8 @@ class _SignupPageState extends State<SignupPage> {
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Color(0xFFB4E50D),
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(14)
-                        )
+                          borderRadius: BorderRadius.circular(14),
+                        ),
                       ),
                       onPressed: () {
                         Navigator.pushReplacement(

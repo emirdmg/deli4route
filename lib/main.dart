@@ -30,7 +30,7 @@ class MyApp extends ConsumerWidget {
       debugShowCheckedModeBanner: false,
       title: "Deli4Route",
       theme: ThemeData(
-        textTheme: GoogleFonts.lexendTextTheme(),
+        textTheme: GoogleFonts.openSansTextTheme(),
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
       ),
       home: const SplashScreen(),

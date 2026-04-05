@@ -1,3 +1,4 @@
+import 'package:deli4route/features/home/pages/create_route_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:geolocator/geolocator.dart';
@@ -77,13 +78,14 @@ class _RoutePageState extends State<RoutePage> {
                   mapType: MapType.normal,
                 ),
           Positioned(
-            top:
-                100, // Alttan ne kadar yukarıda duracağı (BottomBar'a dikkat!)
+            top: 100, // Alttan ne kadar yukarıda duracağı (BottomBar'a dikkat!)
             right: 20, // Sağdan ne kadar içeride duracağı
             child: FloatingActionButton.extended(
               onPressed: () {
-                // Butona basınca ne olacağını buraya yaz
-                print("Navigasyonu Başlat!");
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (builder) => CreateRoutePage()),
+                );
               },
               backgroundColor: Colors.orange, // Senin temanla uyumlu renk
               icon: const Icon(Icons.navigation, color: Colors.white),
