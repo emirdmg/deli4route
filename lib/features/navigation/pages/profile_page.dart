@@ -1,5 +1,6 @@
 import 'package:deli4route/core/colors/app_colors.dart';
 import 'package:deli4route/features/auth/pages/auth_landing_page.dart';
+import 'package:deli4route/features/navigation/pages/edit_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -91,9 +92,15 @@ class _ProfilePageState extends State<ProfilePage> {
                     //name and surname
                   ),
                   Spacer(),
-                  IconButton(onPressed: () {
-
-                  }, icon: Icon(Icons.edit)),
+                  IconButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (builder) => EditProfile()),
+                      );
+                    },
+                    icon: Icon(Icons.edit),
+                  ),
                 ],
               ),
             ),
@@ -114,7 +121,10 @@ class LogoutService {
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context), // İptal: Diyaloğu kapat
-            child: const Text("Vazgeç", style: TextStyle(color: AppColors.inactiveButtonColor),),
+            child: const Text(
+              "Vazgeç",
+              style: TextStyle(color: AppColors.inactiveButtonColor),
+            ),
           ),
           TextButton(
             onPressed: () async {
@@ -131,7 +141,9 @@ class LogoutService {
               // Tüm sayfaları temizleyerek WelcomePage'e gönderir
               Navigator.pushAndRemoveUntil(
                 context,
-                MaterialPageRoute(builder: (context) => const AuthLandingPage()),
+                MaterialPageRoute(
+                  builder: (context) => const AuthLandingPage(),
+                ),
                 (route) => false,
               );
             },
