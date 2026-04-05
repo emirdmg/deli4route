@@ -191,45 +191,60 @@ Uygulama **Flutter & Dart** teknolojileri ile geliştirilmektedir.
 
 lib/
 ├── core/
-│    ├── colors/
-│    │     └── app_colors.dart
-│    ├── services/
-│    │     └── directory_file.dart
-│    └── utils/
-│          └── (helper functions)
+│   ├── colors/
+│   │   └── app_colors.dart
+│   ├── excel/
+│   │   └── excel_parser.dart
+│   ├── geocoding/
+│   │   └── geocoding_service.dart
+│   ├── services/
+│   │   └── directory_file.dart
+│   └── theme/
+│       └── app_borders.dart
 │
 ├── features/
-│    ├── onboarding/
-│    │     ├── pages/
-│    │     │     ├── splash_screen.dart
-│    │     │     ├── onboarding_page.dart
-│    │     │     └── welcome_page.dart
-│    │     └── widgets/
+│   ├── auth/
+│   │   ├── pages/
+│   │   │   ├── reset-password/
+│   │   │   │   ├── forgot_password.dart
+│   │   │   │   ├── new_password.dart
+│   │   │   │   └── verify_page.dart
+│   │   │   ├── auth_landing_page.dart
+│   │   │   ├── login_page.dart
+│   │   │   └── signup_page.dart
+│   │   └── widgets/
+│   │
+│   ├── home/
+│   │   ├── pages/
+│   │   │   ├── create_route_page.dart
+│   │   │   └── home_page.dart
+│   │   └── widgets/
+│   │       ├── home_line_chart.dart
+│   │       └── stat_card.dart
+│   │
+│   ├── navigation/
+│   │   ├── pages/
+│   │   │   ├── app_shell.dart
+│   │   │   ├── edit_profile.dart
+│   │   │   ├── history_page.dart
+│   │   │   ├── profile_page.dart
+│   │   │   └── route_page.dart
+│   │   └── providers/
+│   │       └── navigation_provider.dart
+│   │
+│   ├── onboarding/
+│   │   └── pages/
+│   │       ├── onboarding_page.dart
+│   │       ├── splash_screen.dart
+│   │       └── welcome_page.dart
+│   │
+│   └── routes/
+│       ├── models/
+│       │   ├── delivery_stop.dart
+│       │   └── route_cards_model.dart
+│       └── widgets/
 │
-│    ├── auth/
-│    │     ├── pages/
-│    │     │     ├── login_page.dart
-│    │     │     └── auth_landing_page.dart
-│    │     └── widgets/
-│
-│    ├── home/
-│    │     ├── pages/
-│    │     │     └── home_page.dart
-│    │     └── widgets/
-│
-│    ├── navigation/
-│    │     ├── pages/
-│    │     │     ├── app_shell.dart
-│    │     │     ├── route_page.dart
-│    │     │     ├── history_page.dart
-│    │     │     └── profile_page.dart
-│    │     └── widgets/
-│
-│    ├── routes/
-│    │     ├── models/
-│    │     │     └── route_cards_model.dart
-│    │     └── widgets/
-│
+├── firebase_options.dart
 └── main.dart
 ```
 

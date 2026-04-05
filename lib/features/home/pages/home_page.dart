@@ -85,25 +85,25 @@ class _HomePageState extends State<HomePage> {
                   childAspectRatio: 1.2,
                   children: [
                     buildSmallStatCard(
-                      "Toplam Kazanç",
+                      "Total Revenue",
                       "$currency${totalEarnings.toStringAsFixed(0)}",
                       Icons.monetization_on_outlined,
                       Colors.green,
                     ),
                     buildSmallStatCard(
-                      "Teslimat",
+                      "Deliveries",
                       "$completedDeliveries",
                       Icons.local_shipping,
                       Colors.blue,
                     ),
                     buildSmallStatCard(
-                      "Mesafe",
+                      "Distance",
                       "145km",
                       Icons.route,
                       Colors.purple,
                     ),
                     buildSmallStatCard(
-                      "Saat",
+                      "Duration",
                       "32h",
                       Icons.access_time,
                       Colors.orange,
