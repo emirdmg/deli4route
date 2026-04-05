@@ -29,10 +29,10 @@ The goal is to make delivery operations faster, more organized, and more efficie
 
 The app is developed using **Flutter & Dart**.
 
-- **State Management:** To be determined  
+- **State Management:** Provider  
 - **Theme:** Material 3 + custom color set  
-- **Data Storage:** Temporary mock data  
-- **Maps:** Google Maps / Mapbox (under evaluation)  
+- **Data Storage:** Firebase Cloud Firestore
+- **Maps:** Google Maps 
 - **API:** Not integrated yet (planned)
 
 ---
@@ -42,45 +42,60 @@ The app is developed using **Flutter & Dart**.
 
 lib/
 ├── core/
-│    ├── colors/
-│    │     └── app_colors.dart
-│    ├── services/
-│    │     └── directory_file.dart
-│    └── utils/
-│          └── (helper functions)
+│   ├── colors/
+│   │   └── app_colors.dart
+│   ├── excel/
+│   │   └── excel_parser.dart
+│   ├── geocoding/
+│   │   └── geocoding_service.dart
+│   ├── services/
+│   │   └── directory_file.dart
+│   └── theme/
+│       └── app_borders.dart
 │
 ├── features/
-│    ├── onboarding/
-│    │     ├── pages/
-│    │     │     ├── splash_screen.dart
-│    │     │     ├── onboarding_page.dart
-│    │     │     └── welcome_page.dart
-│    │     └── widgets/
+│   ├── auth/
+│   │   ├── pages/
+│   │   │   ├── reset-password/
+│   │   │   │   ├── forgot_password.dart
+│   │   │   │   ├── new_password.dart
+│   │   │   │   └── verify_page.dart
+│   │   │   ├── auth_landing_page.dart
+│   │   │   ├── login_page.dart
+│   │   │   └── signup_page.dart
+│   │   └── widgets/
+│   │
+│   ├── home/
+│   │   ├── pages/
+│   │   │   ├── create_route_page.dart
+│   │   │   └── home_page.dart
+│   │   └── widgets/
+│   │       ├── home_line_chart.dart
+│   │       └── stat_card.dart
+│   │
+│   ├── navigation/
+│   │   ├── pages/
+│   │   │   ├── app_shell.dart
+│   │   │   ├── edit_profile.dart
+│   │   │   ├── history_page.dart
+│   │   │   ├── profile_page.dart
+│   │   │   └── route_page.dart
+│   │   └── providers/
+│   │       └── navigation_provider.dart
+│   │
+│   ├── onboarding/
+│   │   └── pages/
+│   │       ├── onboarding_page.dart
+│   │       ├── splash_screen.dart
+│   │       └── welcome_page.dart
+│   │
+│   └── routes/
+│       ├── models/
+│       │   ├── delivery_stop.dart
+│       │   └── route_cards_model.dart
+│       └── widgets/
 │
-│    ├── auth/
-│    │     ├── pages/
-│    │     │     ├── login_page.dart
-│    │     │     └── auth_landing_page.dart
-│    │     └── widgets/
-│
-│    ├── home/
-│    │     ├── pages/
-│    │     │     └── home_page.dart
-│    │     └── widgets/
-│
-│    ├── navigation/
-│    │     ├── pages/
-│    │     │     ├── app_shell.dart
-│    │     │     ├── route_page.dart
-│    │     │     ├── history_page.dart
-│    │     │     └── profile_page.dart
-│    │     └── widgets/
-│
-│    ├── routes/
-│    │     ├── models/
-│    │     │     └── route_cards_model.dart
-│    │     └── widgets/
-│
+├── firebase_options.dart
 └── main.dart
 ```
 
@@ -89,10 +104,10 @@ lib/
 ## 📸 Screenshots
 
 <p align="center">
-  <img src="assets/screenshots/ss_auth.png" width="250">
-  <img src="assets/screenshots/ss_create_route.png" width="250">
-  <img src="assets/screenshots/ss_get_started.png" width="250">
   <img src="assets/screenshots/ss_homepage.png" width="250">
+  <img src="assets/screenshots/ss_create_route.png" width="250">
+  <img src="assets/screenshots/ss_auth.png" width="250">
+  <img src="assets/screenshots/ss_get_started.png" width="250">
   <img src="assets/screenshots/ss_login.png" width="250">
   <img src="assets/screenshots/ss_signup.png" width="250">
   <img src="assets/screenshots/ss_splash.png" width="250">
@@ -111,10 +126,10 @@ lib/
 - Splash & onboarding  
 - UI components  
 - Color management
-- Firebase Firestore
+- Home page design
+- Firebase Firestore 
 
 ### 🛠 In Progress
-- Home page design  
 - Route creation flow  
 
 ### 🚧 Planned
@@ -139,7 +154,7 @@ flutter run
 Flutter Developer • Mobile Applications & Technology  
 
 GitHub: https://github.com/emirhansen  
-LinkedIn: [text](https://www.linkedin.com/in/emirdmg/)
+LinkedIn: [emirdmg](https://www.linkedin.com/in/emirdmg/)
 
 ---
 
@@ -181,10 +196,10 @@ Amaç: Teslimat süreçlerini daha hızlı, düzenli ve verimli hale getirmek.
 
 Uygulama **Flutter & Dart** teknolojileri ile geliştirilmektedir.
 
-- **State Management:** Belirlenecek  
+- **State Management:** Provider  
 - **Tema:** Material 3 + özel renk seti  
-- **Veri Saklama:** Mock data  
-- **Haritalar:** Google Maps / Mapbox  
+- **Veri Saklama:** Firebase Cloud Firestore
+- **Haritalar:** Google Maps  
 - **API:** Henüz eklenmedi (yakında eklenecek)
 
 ---
@@ -257,10 +272,10 @@ lib/
 ## 📸 Ekran Görüntüleri
 
 <p align="center">
-  <img src="assets/screenshots/ss_auth.png" width="250">
-  <img src="assets/screenshots/ss_create_route.png" width="250">
-  <img src="assets/screenshots/ss_get_started.png" width="250">
   <img src="assets/screenshots/ss_homepage.png" width="250">
+  <img src="assets/screenshots/ss_create_route.png" width="250">
+  <img src="assets/screenshots/ss_auth.png" width="250">
+  <img src="assets/screenshots/ss_get_started.png" width="250">
   <img src="assets/screenshots/ss_login.png" width="250">
   <img src="assets/screenshots/ss_signup.png" width="250">
   <img src="assets/screenshots/ss_splash.png" width="250">
@@ -280,11 +295,12 @@ lib/
 - Splash & Onboarding  
 - UI bileşenleri  
 - Renk yönetimi  
+- Ana sayfa tasarımı  
+- Firebase Firestore
 
 ### 🛠️ Yapım Aşamasında:  
-- Ana sayfa tasarımı  
+
 - Rota oluşturma akışı  
-- Firebase Firestore
 
 ### 🚧 Planlanan:  
 - OCR  
@@ -308,7 +324,7 @@ flutter run
 Flutter Developer • Mobil Uygulamalar & Teknoloji  
 
 GitHub: https://github.com/emirhansen  
-LinkedIn: (isteğe bağlı)
+LinkedIn: [emirdmg](https://www.linkedin.com/in/emirdmg/)
 
 ---
 
