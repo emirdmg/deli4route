@@ -127,16 +127,16 @@ lib/
 - UI components  
 - Color management
 - Home page design
-- Firebase Firestore 
+- Firebase Firestore
+- Map & navigation integration
+- User profile  
 
 ### 🛠 In Progress
 - Route creation flow  
 
 ### 🚧 Planned
 - OCR-based package scanning  
-- Map & navigation integration
 - Route optimization algorithms  
-- User profile  
 - Business modules
 
 ---
@@ -297,6 +297,8 @@ lib/
 - Renk yönetimi  
 - Ana sayfa tasarımı  
 - Firebase Firestore
+- Harita entegrasyonu
+- Kullanıcı profili  
 
 ### 🛠️ Yapım Aşamasında:  
 
@@ -304,9 +306,7 @@ lib/
 
 ### 🚧 Planlanan:  
 - OCR  
-- Harita entegrasyonu
 - Rota optimizasyon algoritmaları  
-- Kullanıcı profili  
 - İşletmelere özel modüller
 
 ---
