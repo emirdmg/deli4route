@@ -247,7 +247,7 @@ class _SignupPageState extends State<SignupPage> {
                 ),
                 Padding(padding: EdgeInsets.only(top: 10)),
                 DropdownButtonFormField<String>(
-                  value: _selectedCurrency,
+                  initialValue: _selectedCurrency,
                   decoration: InputDecoration(
                     labelText: 'Currency Type',
                     enabledBorder: AppBorders.enabled,

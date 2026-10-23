@@ -11,7 +11,7 @@ Widget buildLineChart() {
       borderRadius: BorderRadius.circular(28),
       boxShadow: [
         BoxShadow(
-          color: Colors.black.withOpacity(0.05),
+          color: Colors.black.withValues(alpha: 0.05),
           blurRadius: 20,
           offset: const Offset(0, 10),
         ),
@@ -59,8 +59,8 @@ Widget buildLineChart() {
                     // Görseldeki o soft gölge efekti (Gradient)
                     gradient: LinearGradient(
                       colors: [
-                        AppColors.activeDefaultButton.withOpacity(0.3),
-                        AppColors.activeDefaultButton.withOpacity(0.0),
+                        AppColors.activeDefaultButton.withValues(alpha: 0.03),
+                        AppColors.activeDefaultButton.withValues(alpha: 0.00),
                       ],
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,

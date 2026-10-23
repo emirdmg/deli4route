@@ -25,10 +25,11 @@ class _SplashScreenState extends State<SplashScreen> {
     // 1. Lottie animasyonunun keyfini sürmek için 3 saniye bekle
     await Future.delayed(const Duration(seconds: 3));
 
-    if (!mounted) return;
-
     // 2. Cihaz hafızasından giriş bilgisini kontrol et
     final prefs = await SharedPreferences.getInstance();
+
+    if (!mounted) return;
+
     final bool isLoggedIn = prefs.getBool('isLoggedIn') ?? false;
 
     // 3. Hangi sayfaya gidileceğine karar ver

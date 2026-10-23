@@ -2,6 +2,7 @@ import 'package:deli4route/core/colors/app_colors.dart';
 import 'package:deli4route/core/theme/app_borders.dart';
 import 'package:deli4route/features/auth/pages/login_page.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:lottie/lottie.dart';
@@ -22,17 +23,21 @@ class _NewPasswordState extends State<NewPassword> {
     showDialog(
       context: context,
       barrierDismissible: false, // Kullanıcı animasyonu kapatamasın
-      builder: (BuildContext context) {
+      builder: (BuildContext dialogContext) {
         // Diyalog kapandığında çalışacak kod (örn: Giriş sayfasına git)
         Future.delayed(const Duration(seconds: 4), () {
+          if(!mounted) return;
+          if(!dialogContext.mounted) return;
           // 2 saniye bekle
-          Navigator.of(context).pop(); // Diyaloğu kapat
+          Navigator.of(dialogContext).pop(); // Diyaloğu kapat
           // TODO: Buraya giriş sayfasına yönlendirme kodunu ekle
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(builder: (c) => LoginPage()),
           );
-          print("Giriş sayfasına yönlendiriliyor...");
+          if (kDebugMode) {
+            print("Giriş sayfasına yönlendiriliyor...");
+          }
         });
 
         return Dialog(

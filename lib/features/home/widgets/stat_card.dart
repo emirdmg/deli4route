@@ -12,7 +12,7 @@ Widget buildSmallStatCard(
       color: Colors.white,
       borderRadius: BorderRadius.circular(24),
       boxShadow: [
-        BoxShadow(color: Colors.black.withOpacity(0.03), blurRadius: 10),
+        BoxShadow(color: Colors.black.withValues(alpha: 0.03), blurRadius: 10),
       ],
     ),
     child: Column(

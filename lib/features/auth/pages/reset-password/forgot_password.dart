@@ -1,6 +1,7 @@
 import 'package:deli4route/core/colors/app_colors.dart';
 import 'package:deli4route/core/theme/app_borders.dart';
 import 'package:deli4route/features/auth/pages/reset-password/verify_page.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -85,7 +86,9 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                     ),
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
-                        print("Navigating to VerifyPage...");
+                        if (kDebugMode) {
+                          print("Navigating to VerifyPage...");
+                        }
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(builder: (builder) => VerifyPage()),

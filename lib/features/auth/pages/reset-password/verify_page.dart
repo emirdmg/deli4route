@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:deli4route/core/colors/app_colors.dart';
 import 'package:deli4route/features/auth/pages/reset-password/new_password.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:pinput/pinput.dart';
@@ -106,7 +107,9 @@ class _VerifyPageState extends State<VerifyPage> {
                   pin = value;
                 });
                 // Kod tamamlandığında API'ye gönderilecek fonksiyon
-                print("Girilen Kod: $pin");
+                if (kDebugMode) {
+                  print("Girilen Kod: $pin");
+                }
               },
               keyboardType: TextInputType.number,
               autofocus: true,
@@ -119,7 +122,9 @@ class _VerifyPageState extends State<VerifyPage> {
                   ? () {
                       startTimer(); // Sayacı başlat
                       // Buraya API'den kodu tekrar gönderen fonksiyonunu ekle
-                      print("Kod tekrar gönderiliyor...");
+                      if (kDebugMode) {
+                        print("Kod tekrar gönderiliyor...");
+                      }
                     }
                   : null, // Aktif değilse tıklanamaz
               child: Text(
@@ -157,13 +162,19 @@ class _VerifyPageState extends State<VerifyPage> {
                         context,
                         MaterialPageRoute(builder: (builder) => NewPassword()),
                       );
-                      print('Başarılı');
+                      if (kDebugMode) {
+                        print('Başarılı');
+                      }
                       // nav push yeni sifre ekrani
                     } else {
-                      print('Hatalı kod');
+                      if (kDebugMode) {
+                        print('Hatalı kod');
+                      }
                     }
                   } else {
-                    print('Lütfen 6 haneli kodu tamamlayın.');
+                    if (kDebugMode) {
+                      print('Lütfen 6 haneli kodu tamamlayın.');
+                    }
                   }
                 },
                 child: const Text(

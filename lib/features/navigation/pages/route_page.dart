@@ -42,7 +42,9 @@ class _RoutePageState extends State<RoutePage> {
 
   Future<void> _getUserLocation() async {
     Position position = await Geolocator.getCurrentPosition(
-      desiredAccuracy: LocationAccuracy.high,
+      locationSettings: LocationSettings(
+        accuracy: LocationAccuracy.high,
+      ),
     );
 
     setState(() {
