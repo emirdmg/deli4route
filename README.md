@@ -1,334 +1,139 @@
-# Deli4Route – Smart Delivery & Route Management Application
+# Deli4Route
 
-Deli4Route is a modern and user-friendly **Flutter mobile application** developed for couriers, small delivery companies, and field teams.  
-The goal is to make delivery operations faster, more organized, and more efficient.
+Excel dosyasındaki teslimat duraklarını başlangıç noktasından itibaren en yakın
+komşu yöntemiyle sıralayan, Android ve iOS için Flutter uygulaması.
 
----
+**Hesap, Firebase projesi, Google Maps SDK anahtarı veya .env gerekmez.**
+Rota ve teslimat durumları bu cihazda tutulur.
 
-## 🚀 Key Features
+## Kullanım
 
-- **Create Delivery List**  
-  Couriers can manually enter daily packages.  
-  (Future: Automatic importing through OCR or API)
+1. Cihaz konumuna izin verin veya **Başlangıç seç** ile haritadan bir nokta seçin.
+2. **Excel’den rota oluştur** ile bir `.xlsx` dosyası yükleyin.
+3. Konumları kontrol edin. Çözümlenemeyen veya yanlış bulunan bir durağı
+   haritadan seçerek ya da enlem/boylam yazarak düzeltin.
+4. Kontrol kutusunu işaretleyip sıralamayı oluşturun.
+5. **Navigasyon** ile sıradaki durağı Google Maps uygulamasında veya tarayıcıda açın.
+6. Teslimattan sonra **Tamamlandı** seçin. Kalan duraklar son tamamlanan noktadan
+   tekrar sıralanır. Güncel GPS konumundan başlamak için **Konumumdan yeniden sırala**
+   kullanın.
+7. Uygulamayı kapatıp açtığınızda kayıtlı rotaya devam edin. Bir seferde tek rota saklanır;
+   yeni rota, onayınızdan sonra eski rotanın yerini alır.
 
-- **Smart Route Generation (Coming Soon)**  
-  Suggests the most optimal delivery order based on locations.
+Denemek için uygulamadaki **Örnek 5 durakla dene** düğmesini kullanabilirsiniz.
+Bu örnek gerçek teslimat adresleri içermez; İstanbul'da açıkça belirtilen bir test
+başlangıcı ve test koordinatları kullanır.
 
-- **Navigation Support (Coming Soon)**  
-  One-tap redirection to the preferred navigation app.
+## Excel biçimi
 
-- **Delivery Status Updates**  
-  Packages can be marked as delivered, failed, or canceled.
+Şablon: [delivery_template.xlsx](assets/templates/delivery_template.xlsx)
 
-- **AI-Powered Package Recognition (Planned)**  
-  Automatically extracts package information using barcode, QR, or label images.
+Örnek: [sample_deliveries.xlsx](assets/templates/sample_deliveries.xlsx)
 
----
+| Sütun | Açıklama |
+| --- | --- |
+| `address` veya `adres` | Teslimat adresi; il/ilçe eklemek sonuçları iyileştirir. |
+| `customer_name` | İsteğe bağlı müşteri adı. |
+| `phone` | İsteğe bağlı telefon; baştaki sıfırı korumak için Excel'de metin olarak tutun. |
+| `note` | İsteğe bağlı teslimat notu. |
+| `latitude`, `longitude` | İsteğe bağlı koordinatlar; ikisi birlikte girilmeli. |
 
-## 🧱 Tech Stack
+- Adres yerine enlem ve boylam da sağlanabilir.
+- Koordinatlar varsa adres çözümleme isteği gönderilmez.
+- Türkçe `enlem`, `boylam`, `telefon`, `not` başlıkları da desteklenir.
+- Boş satırlar atlanır; hatalı koordinatlar ve eksik adresler satır numarasıyla bildirilir.
+- En fazla 200 durak alınır. CSV ve eski `.xls` biçimleri desteklenmez;
+  önce `.xlsx` olarak kaydedin.
+- Excel numarası içe aktarılan durakların özgün sırasıdır. Ziyaret sırası ayrıca
+  1, 2, 3… olarak gösterilir.
 
-The app is developed using **Flutter & Dart**.
+## Sıralama ne yapar?
 
-- **State Management:** Provider  
-- **Theme:** Material 3 + custom color set  
-- **Data Storage:** Firebase Cloud Firestore
-- **Maps:** Google Maps 
-- **API:** Not integrated yet (planned)
+Başlangıçtan en yakın durak seçilir. Sonra bu duraktan kalan en yakın durak seçilir
+ve tüm duraklar işlenene kadar devam edilir. Örnek Excel'in test başlangıcında sıra:
 
----
+**2 → 3 → 1 → 5 → 4**
 
-## 📂 Project Folder Structure
-```text
+Mesafe Haversine formülüyle, **kuş uçuşu** olarak hesaplanır. Trafik, tek yön,
+köprü, araç kapasitesi veya teslimat saati hesaba katılmaz. Bu sezgisel yöntem
+toplamda en kısa sürüş rotasını garanti etmez. Haritadaki noktalı bağlantı,
+yol geometrisi değil, ziyaret sırasıdır. Gerçek sürüş yolu harici navigasyonda hesaplanır.
 
-lib/
-├── core/
-│   ├── colors/
-│   │   └── app_colors.dart
-│   ├── excel/
-│   │   └── excel_parser.dart
-│   ├── geocoding/
-│   │   └── geocoding_service.dart
-│   ├── services/
-│   │   └── directory_file.dart
-│   └── theme/
-│       └── app_borders.dart
-│
-├── features/
-│   ├── auth/
-│   │   ├── pages/
-│   │   │   ├── reset-password/
-│   │   │   │   ├── forgot_password.dart
-│   │   │   │   ├── new_password.dart
-│   │   │   │   └── verify_page.dart
-│   │   │   ├── auth_landing_page.dart
-│   │   │   ├── login_page.dart
-│   │   │   └── signup_page.dart
-│   │   └── widgets/
-│   │
-│   ├── home/
-│   │   ├── pages/
-│   │   │   ├── create_route_page.dart
-│   │   │   └── home_page.dart
-│   │   └── widgets/
-│   │       ├── home_line_chart.dart
-│   │       └── stat_card.dart
-│   │
-│   ├── navigation/
-│   │   ├── pages/
-│   │   │   ├── app_shell.dart
-│   │   │   ├── edit_profile.dart
-│   │   │   ├── history_page.dart
-│   │   │   ├── profile_page.dart
-│   │   │   └── route_page.dart
-│   │   └── providers/
-│   │       └── navigation_provider.dart
-│   │
-│   ├── onboarding/
-│   │   └── pages/
-│   │       ├── onboarding_page.dart
-│   │       ├── splash_screen.dart
-│   │       └── welcome_page.dart
-│   │
-│   └── routes/
-│       ├── models/
-│       │   ├── delivery_stop.dart
-│       │   └── route_cards_model.dart
-│       └── widgets/
-│
-├── firebase_options.dart
-└── main.dart
-```
+## İnternet ve ücretsiz servisler
 
----
+- Sıralama ve kayıt cihazda çalışır.
+- Harita `flutter_map` ve OpenStreetMap harita döşemelerini kullanır.
+  Kaynak gösterimi ve uygulama kimliği bulunur; flutter_map'in yerleşik,
+  HTTP önbellek başlıklarına uyan döşeme önbelleği kullanılır.
+- Adres çözümleme, `geocoding` üzerinden işletim sisteminin servisini kullanır.
+  İnternet ve platform servisi gerekir; ücretsiz servisler kota/erişim sınırlarına
+  tabidir. İşlemler sırayla yürütülür, sorgular arasında beklenir ve sonuçlar yerelde
+  önbelleklenir. Servis kullanılamazsa koordinat veya haritadan seçim kullanılabilir.
+- Navigasyon bağlantıları Google Maps URLs kullanır ve API anahtarı gerektirmez.
+- Toplu/offline harita indirme yoktur. Harita sunucusu sınırsız veya garantili
+  bir servis değildir. [OSM döşeme kullanım koşullarını](https://operations.osmfoundation.org/policies/tiles/)
+  ve [geocoding paketinin sınırlarını](https://pub.dev/packages/geocoding) inceleyin.
+- Kendi izinli döşeme sunucunuz için derleme sırasında
+  `--dart-define=MAP_TILE_URL=https://sunucunuz/{z}/{x}/{y}.png` kullanabilirsiniz.
+  Farklı sağlayıcı kullanırken gereken kaynak gösterimini de güncelleyin.
 
-## 📸 Screenshots
+## Yerel veriler
 
-<p align="center">
-  <img src="assets/screenshots/ss_homepage.png" width="250">
-  <img src="assets/screenshots/ss_create_route.png" width="250">
-  <img src="assets/screenshots/ss_auth.png" width="250">
-  <img src="assets/screenshots/ss_get_started.png" width="250">
-  <img src="assets/screenshots/ss_login.png" width="250">
-  <img src="assets/screenshots/ss_signup.png" width="250">
-  <img src="assets/screenshots/ss_splash.png" width="250">
-  <img src="assets/screenshots/ss_tour_2.png" width="250">
-  <img src="assets/screenshots/ss_tour3.png" width="250">
-  <img src="assets/screenshots/ss_tour.png" width="250">
-</p> 
+Rota, alıcı bilgileri, tamamlanma durumu ve adres koordinat önbelleği
+`shared_preferences` içinde saklanır; uygulamanın kendi bulut sunucusu yoktur.
+Adres çözümlemede girilen adres işletim sisteminin servisine, navigasyon açıldığında
+hedef koordinatı harita sağlayıcısına iletilir. Harita sunucusu görüntülenen
+alanın döşeme isteklerini alır. **Rotayı sil** işlemi kayıtlı rotayı ve adres
+önbelleğini temizler. Uygulamayı kaldırmak da yerel kayıtları siler.
 
----
+Eski özel Firebase yapılandırması varsa geliştirme cihazında `.local/` içinde
+yedeklenmiş olabilir. Bu klasör Git'e dahil edilmez ve uygulamada kullanılmaz.
+Projeyi yeni klonlayan kişinin bu dosyalara ihtiyacı yoktur.
 
-## 📅 Roadmap
+## Çalıştırma
 
-### ✅ Completed
-- Project setup  
-- Page structure  
-- Splash & onboarding  
-- UI components  
-- Color management
-- Home page design
-- Firebase Firestore
-- Map & navigation integration
-- User profile  
+Gerekli: Flutter/Dart, Android için SDK/JDK; iOS için macOS ve Xcode.
+Minimum iOS sürümü 15.0'dır. Android/iOS desteklenir; web/masaüstü bu sürümün
+hedefi değildir. Native bağımlılıklar iOS'ta Swift Package Manager ile yüklenir.
 
-### 🛠 In Progress
-- Route creation flow  
-
-### 🚧 Planned
-- OCR-based package scanning  
-- Route optimization algorithms  
-- Business modules
-
----
-
-## 🧪 Running the Project
-
+```sh
 flutter pub get
 flutter run
-
----
-
-## 👤 Developer
-
-**Emirhan Sen**  
-Flutter Developer • Mobile Applications & Technology  
-
-GitHub: https://github.com/emirhansen  
-LinkedIn: [emirdmg](https://www.linkedin.com/in/emirdmg/)
-
----
-
-## ⭐ Support
-
-You can support the project by leaving a ⭐ star.  
-The application is actively under development.
-
----
-
-# 🇹🇷 Deli4Route – Akıllı Teslimat ve Rota Yönetim Uygulaması
-
-Deli4Route, kuryeler, küçük kargo işletmeleri ve saha ekipleri için geliştirilmiş modern ve kullanıcı dostu bir **Flutter mobil uygulamasıdır**.  
-Amaç: Teslimat süreçlerini daha hızlı, düzenli ve verimli hale getirmek.
-
----
-
-## 🚀 Öne Çıkan Özellikler
-
-- **Teslimat Listesi Oluşturma**  
-  Kuryeler günlük paketlerini uygulamaya manuel ekleyebilir.  
-  (İlerleyen aşamada: OCR veya API ile otomatik aktarma)
-
-- **Akıllı Rota Oluşturma (Yakında)**  
-  Konumlara göre en uygun teslimat sırasını öneren algoritma.
-
-- **Navigasyon Desteği (Yakında)**  
-  Harita uygulamasına tek dokunuşla yönlendirme.
-
-- **Teslimat Durumu Güncelleme**  
-  Teslim edildi, teslim edilemedi, iptal gibi durumlar eklenebilir.
-
-- **AI Destekli Paket Tanıma (Planlanıyor)**  
-  Barkod, QR veya etiket fotoğrafından paket bilgilerini otomatik algılama.
-
----
-
-## 🧱 Teknik Yapı
-
-Uygulama **Flutter & Dart** teknolojileri ile geliştirilmektedir.
-
-- **State Management:** Provider  
-- **Tema:** Material 3 + özel renk seti  
-- **Veri Saklama:** Firebase Cloud Firestore
-- **Haritalar:** Google Maps  
-- **API:** Henüz eklenmedi (yakında eklenecek)
-
----
-
-## 📂 Proje Klasör Yapısı
-
-```text
-
-lib/
-├── core/
-│   ├── colors/
-│   │   └── app_colors.dart
-│   ├── excel/
-│   │   └── excel_parser.dart
-│   ├── geocoding/
-│   │   └── geocoding_service.dart
-│   ├── services/
-│   │   └── directory_file.dart
-│   └── theme/
-│       └── app_borders.dart
-│
-├── features/
-│   ├── auth/
-│   │   ├── pages/
-│   │   │   ├── reset-password/
-│   │   │   │   ├── forgot_password.dart
-│   │   │   │   ├── new_password.dart
-│   │   │   │   └── verify_page.dart
-│   │   │   ├── auth_landing_page.dart
-│   │   │   ├── login_page.dart
-│   │   │   └── signup_page.dart
-│   │   └── widgets/
-│   │
-│   ├── home/
-│   │   ├── pages/
-│   │   │   ├── create_route_page.dart
-│   │   │   └── home_page.dart
-│   │   └── widgets/
-│   │       ├── home_line_chart.dart
-│   │       └── stat_card.dart
-│   │
-│   ├── navigation/
-│   │   ├── pages/
-│   │   │   ├── app_shell.dart
-│   │   │   ├── edit_profile.dart
-│   │   │   ├── history_page.dart
-│   │   │   ├── profile_page.dart
-│   │   │   └── route_page.dart
-│   │   └── providers/
-│   │       └── navigation_provider.dart
-│   │
-│   ├── onboarding/
-│   │   └── pages/
-│   │       ├── onboarding_page.dart
-│   │       ├── splash_screen.dart
-│   │       └── welcome_page.dart
-│   │
-│   └── routes/
-│       ├── models/
-│       │   ├── delivery_stop.dart
-│       │   └── route_cards_model.dart
-│       └── widgets/
-│
-├── firebase_options.dart
-└── main.dart
 ```
 
----
+Firebase CLI, Google Cloud hesabı, CocoaPods veya API anahtarı kurulumu gerekmez.
 
-## 📸 Ekran Görüntüleri
+## Kontroller
 
-<p align="center">
-  <img src="assets/screenshots/ss_homepage.png" width="250">
-  <img src="assets/screenshots/ss_create_route.png" width="250">
-  <img src="assets/screenshots/ss_auth.png" width="250">
-  <img src="assets/screenshots/ss_get_started.png" width="250">
-  <img src="assets/screenshots/ss_login.png" width="250">
-  <img src="assets/screenshots/ss_signup.png" width="250">
-  <img src="assets/screenshots/ss_splash.png" width="250">
-  <img src="assets/screenshots/ss_tour_2.png" width="250">
-  <img src="assets/screenshots/ss_tour3.png" width="250">
-  <img src="assets/screenshots/ss_tour.png" width="250">
+```sh
+flutter analyze
+flutter test
+flutter build apk --debug
+flutter build ios --simulator --debug
+```
 
-</p>
+Testler gerçek örnek Excel'i okuma, 2→3→1→5→4 sırası, değişen başlangıç,
+aynı konumdaki teslimatlar, hatalı veriler, kayıt/yeniden yükleme,
+konum izni hatası ve konum kontrolü yapılmadan rotanın onaylanamamasını kapsar.
 
----
+Örnek dosyaları yeniden üretmek için:
 
-## 📅 Yol Haritası (Roadmap)
+```sh
+dart run tool/generate_examples.dart
+```
 
-### ✅ Tamamlandı
-- Proje kurulumu  
-- Sayfa yapısı  
-- Splash & Onboarding  
-- UI bileşenleri  
-- Renk yönetimi  
-- Ana sayfa tasarımı  
-- Firebase Firestore
-- Harita entegrasyonu
-- Kullanıcı profili  
+## Yapı
 
-### 🛠️ Yapım Aşamasında:  
+- `lib/core/excel`: Excel okuma ve doğrulama
+- `lib/core/geocoding`: Anahtarsız platform geocoding ve önbellek
+- `lib/features/routes/services`: Sıralama, konum, kayıt, navigasyon
+- `lib/features/routes/pages`: Haritadan konum seçimi
+- `lib/features/home/pages/create_route_page.dart`: Excel yükleme ve konum kontrolü
+- `lib/features/navigation/pages/route_page.dart`: Aktif rota ve teslimat akışı
 
-- Rota oluşturma akışı  
+## Kapsam
 
-### 🚧 Planlanan:  
-- OCR  
-- Rota optimizasyon algoritmaları  
-- İşletmelere özel modüller
-
----
-
-## 🧪 Projeyi Çalıştırma
-
-flutter pub get
-flutter run
-
----
-
-## 👤 Geliştirici
-
-**Emirhan Sen**  
-Flutter Developer • Mobil Uygulamalar & Teknoloji  
-
-GitHub: https://github.com/emirhansen  
-LinkedIn: [emirdmg](https://www.linkedin.com/in/emirdmg/)
-
----
-
-## ⭐ Destek Ol
-
-Projeye ⭐ yıldız bırakarak destek olabilirsin.  
-Uygulama aktif geliştirilme aşamasındadır.
+Bu bir öğrenme ve portföy projesidir. Hesap açma, şirket paneli, bulut senkronizasyonu,
+teslimat kanıtı, otomatik WhatsApp/OCR aktarımı ve yol süresine dayalı optimizasyon
+bu sürüme dahil değildir. Üretim ölçeğinde kullanım için servis kotaları, yerel veri
+güvenliği ve operasyonel gereksinimler ayrıca değerlendirilmelidir.

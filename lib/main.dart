@@ -1,39 +1,20 @@
-import 'package:deli4route/features/onboarding/pages/splash_screen.dart';
-import 'package:deli4route/firebase_options.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'features/navigation/pages/app_shell.dart';
+import 'core/theme/app_theme.dart';
 
-void main() async {
+void main() {
   WidgetsFlutterBinding.ensureInitialized();
-
-  try {
-    await dotenv.load(fileName: ".env");
-  } catch (e) {
-    debugPrint(".env dosyası yüklenemedi: $e");
-  }
-
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-
-  runApp(const ProviderScope(child: MyApp()));
+  runApp(const MyApp());
 }
 
-class MyApp extends ConsumerWidget {
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: "Deli4Route",
-      theme: ThemeData(
-        textTheme: GoogleFonts.openSansTextTheme(),
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
-      ),
-      home: const SplashScreen(),
-    );
-  }
+  Widget build(BuildContext context) => MaterialApp(
+    debugShowCheckedModeBanner: false,
+    title: 'Deli4Route',
+    theme: buildAppTheme(),
+    home: const AppShell(),
+  );
 }

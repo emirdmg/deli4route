@@ -1,32 +1,63 @@
+import 'dart:async';
 import 'dart:convert';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:http/http.dart' as http;
+import 'package:geocoding/geocoding.dart';
+import 'package:flutter/services.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
+/// Uses the device's geocoder. No developer API key is required.
 class GeocodingService {
-  static final String _apiKey = dotenv.env["GOOGLE_API_KEY"] ?? '';
+  static const cacheKey = 'address_coordinates_v1';
+  static final _geocoder = Geocoding();
+  static DateTime? _lastRequest;
 
   static Future<Map<String, double>> getLatLngFromAddress(
-      String address) async {
-
-    final uri = Uri.parse(
-      'https://maps.googleapis.com/maps/api/geocode/json'
-      '?address=${Uri.encodeComponent(address)}'
-      '&key=$_apiKey',
-    );
-
-    final response = await http.get(uri);
-    final data = json.decode(response.body);
-
-    if (data['status'] != 'OK') {
-      throw Exception('Adres çözümlenemedi');
+    String address,
+  ) async {
+    final normalized = address.trim().toLowerCase();
+    if (normalized.isEmpty) throw const FormatException('Adres boş.');
+    final prefs = await SharedPreferences.getInstance();
+    Map<String, dynamic> cache;
+    try {
+      cache =
+          jsonDecode(prefs.getString(cacheKey) ?? '{}') as Map<String, dynamic>;
+    } catch (_) {
+      cache = {};
     }
-
-    final location =
-        data['results'][0]['geometry']['location'];
-
-    return {
-      'lat': location['lat'],
-      'lng': location['lng'],
-    };
+    final cached = cache[normalized];
+    if (cached is Map && cached['lat'] is num && cached['lng'] is num) {
+      return {
+        'lat': (cached['lat'] as num).toDouble(),
+        'lng': (cached['lng'] as num).toDouble(),
+      };
+    }
+    // Native geocoders are rate-limited. Import resolves sequentially and caches
+    // repeated addresses; coordinates supplied in Excel skip geocoding entirely.
+    if (_lastRequest != null) {
+      final remaining =
+          const Duration(milliseconds: 1400) -
+          DateTime.now().difference(_lastRequest!);
+      if (!remaining.isNegative) await Future<void>.delayed(remaining);
+    }
+    _lastRequest = DateTime.now();
+    try {
+      final locations = await _geocoder
+          .locationFromAddress(address)
+          .timeout(const Duration(seconds: 20));
+      if (locations.isEmpty) throw const FormatException('Adres bulunamadı.');
+      final location = locations.first;
+      final result = {'lat': location.latitude, 'lng': location.longitude};
+      cache[normalized] = result;
+      await prefs.setString(cacheKey, jsonEncode(cache));
+      return result;
+    } on PlatformException {
+      throw const FormatException(
+        'Adres çözümlenemedi. İnterneti kontrol edin veya haritadan konum seçin. '
+        'Cihazın adres sorgulama sınırına ulaşılmış olabilir.',
+      );
+    } on TimeoutException {
+      throw const FormatException(
+        'Adres sorgusu zaman aşımına uğradı. Haritadan konum seçebilirsiniz.',
+      );
+    }
   }
 }

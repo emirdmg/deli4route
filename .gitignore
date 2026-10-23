@@ -43,3 +43,5 @@ lib/config.dart
 ios/Runner/GoogleService-Info.plist
 android/app/google-services.json
 firebase.json
+# Local-only configuration backups
+.local/
